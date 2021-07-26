@@ -30,11 +30,11 @@ import org.openapitools.client.model.V1Protocol;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-16T22:06:12.741Z[GMT]")
 public class V1Accelerator {
-  public static final String SERIALIZED_NAME_DESTINATION_IP = "destinationIp";
+  public static final String SERIALIZED_NAME_DESTINATION_IP = "destination_ip";
   @SerializedName(SERIALIZED_NAME_DESTINATION_IP)
   private String destinationIp;
 
-  public static final String SERIALIZED_NAME_DESTINATION_PORT = "destinationPort";
+  public static final String SERIALIZED_NAME_DESTINATION_PORT = "destination_port";
   @SerializedName(SERIALIZED_NAME_DESTINATION_PORT)
   private Long destinationPort;
 
@@ -50,15 +50,15 @@ public class V1Accelerator {
   @SerializedName(SERIALIZED_NAME_PROTOCOL)
   private V1Protocol protocol = V1Protocol.UDP;
 
-  public static final String SERIALIZED_NAME_SUBSPACE_IP = "subspaceIp";
+  public static final String SERIALIZED_NAME_SUBSPACE_IP = "subspace_ip";
   @SerializedName(SERIALIZED_NAME_SUBSPACE_IP)
   private String subspaceIp;
 
-  public static final String SERIALIZED_NAME_SUBSPACE_IPV4 = "subspaceIpv4";
+  public static final String SERIALIZED_NAME_SUBSPACE_IPV4 = "subspace_ipv4";
   @SerializedName(SERIALIZED_NAME_SUBSPACE_IPV4)
   private String subspaceIpv4;
 
-  public static final String SERIALIZED_NAME_SUBSPACE_PORT = "subspacePort";
+  public static final String SERIALIZED_NAME_SUBSPACE_PORT = "subspace_port";
   @SerializedName(SERIALIZED_NAME_SUBSPACE_PORT)
   private Long subspacePort;
 
