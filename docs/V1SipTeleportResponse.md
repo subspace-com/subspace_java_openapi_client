@@ -7,13 +7,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
+**destination** | **String** |  |  [optional]
+**teleportEntryPoints** | [**List&lt;V1TeleportAddresses&gt;**](V1TeleportAddresses.md) |  |  [optional]
+**status** | **V1SipTeleportStatus** |  |  [optional]
 **dateCreated** | **OffsetDateTime** |  |  [optional]
 **dateUpdated** | **OffsetDateTime** |  |  [optional]
-**destination** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
-**status** | **V1SipTeleportStatus** |  |  [optional]
-**teleportEntryPoints** | [**List&lt;V1TeleportAddresses&gt;**](V1TeleportAddresses.md) |  |  [optional]
-**version** | **Long** |  |  [optional]
 
 
 

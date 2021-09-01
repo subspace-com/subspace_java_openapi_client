@@ -4,20 +4,18 @@ All URIs are relative to *https://api.subspace.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**acceleratorServiceCreate**](AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerators | CreateAccelerator
-[**acceleratorServiceDelete**](AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerators/{id} | DeleteAccelerator
-[**acceleratorServiceGet**](AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerators/{id} | GetAccelerator
-[**acceleratorServiceList**](AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerators | ListAccelerators
-[**acceleratorServiceUpdate**](AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerators/{id} | UpdateAccelerator
+[**acceleratorServiceCreate**](AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerators | 
+[**acceleratorServiceDelete**](AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerators/{id} | 
+[**acceleratorServiceGet**](AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerators/{id} | 
+[**acceleratorServiceList**](AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerators | 
+[**acceleratorServiceUpdate**](AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerators/{id} | 
 
 
 <a name="acceleratorServiceCreate"></a>
 # **acceleratorServiceCreate**
 > V1Accelerator acceleratorServiceCreate(body, idempotencyKey)
 
-CreateAccelerator
 
-CreateAccelerator generates a new PacketAccelerator
 
 ### Example
 ```java
@@ -79,8 +77,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
+**400** | Bad request |  -  |
 **401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **201** | Accelerator created |  -  |
 **0** | An unexpected error response. |  -  |
 
@@ -88,9 +90,7 @@ Name | Type | Description  | Notes
 # **acceleratorServiceDelete**
 > Object acceleratorServiceDelete(id)
 
-DeleteAccelerator
 
-DeleteAccelerator deletes the given PacketAccelerator, specified by its id
 
 ### Example
 ```java
@@ -150,17 +150,19 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
+**400** | Bad request |  -  |
 **401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="acceleratorServiceGet"></a>
 # **acceleratorServiceGet**
 > V1Accelerator acceleratorServiceGet(id)
 
-GetAccelerator
 
-GetAccelerator returns the details of a given PacketAccelerator, specified by its id
 
 ### Example
 ```java
@@ -220,17 +222,19 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  * ETag - Include in the headers of a subsequent PUT to avoid concurrency issues <br>  |
+**400** | Bad request |  -  |
 **401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="acceleratorServiceList"></a>
 # **acceleratorServiceList**
-> V1ListAcceleratorsResponse acceleratorServiceList(before, limit, q)
+> V1ListAcceleratorsResponse acceleratorServiceList(before, limit)
 
-ListAccelerators
 
-ListAccelerators returns a list of all existing PacketAccelerators.
 
 ### Example
 ```java
@@ -254,9 +258,8 @@ public class Example {
     AcceleratorServiceApi apiInstance = new AcceleratorServiceApi(defaultClient);
     String before = "before_example"; // String | 
     Long limit = 56L; // Long | 
-    String q = "q_example"; // String | q Provides a query string which filters accelerators in the response.
     try {
-      V1ListAcceleratorsResponse result = apiInstance.acceleratorServiceList(before, limit, q);
+      V1ListAcceleratorsResponse result = apiInstance.acceleratorServiceList(before, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AcceleratorServiceApi#acceleratorServiceList");
@@ -275,7 +278,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **before** | **String**|  | [optional]
  **limit** | **Long**|  | [optional]
- **q** | **String**| q Provides a query string which filters accelerators in the response. | [optional]
 
 ### Return type
 
@@ -294,17 +296,19 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
+**400** | Bad request |  -  |
 **401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="acceleratorServiceUpdate"></a>
 # **acceleratorServiceUpdate**
 > V1Accelerator acceleratorServiceUpdate(id, body1, ifMatch)
 
-UpdateAccelerator
 
-UpdateAccelerator updates an existing accelerator, specified by its id
 
 ### Example
 ```java
@@ -368,8 +372,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
+**400** | Bad request |  -  |
 **401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **409** | Edit conflict |  -  |
 **0** | An unexpected error response. |  -  |
 

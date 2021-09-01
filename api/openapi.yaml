@@ -5,25 +5,21 @@ info:
     name: Sales
     url: https://subspace.com
   description: "# Introduction\n\nThe Subspace API is based on REST, has resource-oriented\
-    \ URLs, returns JSON-encoded responses, and returns standardHTTP response codes.\n\
-    \nThe base URL for the API is `https://api.subspace.com/`\n\n# Naming Convention\n\
-    \n**EARLY ACCESS NOTE:** There is no “stable” version yet.  Once there is, the\
-    \ version name **stable** will be used to access the latest stable API version.\n\
-    \  * Example: `https://api.subspace.com/stable`\n* Version name currently in use\
-    \ is: *v1*\n  * Example: `https://api.subspace.com/v1`\n\n# Authentication\n\n\
-    ## API Tokens\n\nSubspace authenticates your API requests using JWT Bearer tokens.\
-    \  The provided client library requires this JWT to be set before it can be used,\
-    \ by setting the local access token in the local configuration.  This is done\
-    \ by updating the configuration line marked \"YOUR ACCESS TOKEN\" by replacing\
-    \ the text \"YOUR ACCESS TOKEN\" with your JWT Bearer token.\n\nBearer tokens\
-    \ are granted by requesting one (as noted below) and presenting your publishable\
-    \ (client_id) and secret (client_secret) tokens.   \n\nSubspace provides two types\
-    \ of API tokens: publishable (client_id) and secret (client_secret).  These are\
-    \ available in the Subspace console.\n  * **Publishable** API tokens (client_id)\
-    \ are meant solely to identify your account with Subspace, they aren’t secret.\
-    \ They can be published in places like your website JavaScript code, or in an\
-    \ iPhone or Android app.\n  * **Secret** API tokens (client_secret) should be\
-    \ kept confidential and only stored on your own servers. Your account’s secret\
+    \ URLs, returns JSON-encoded responses, and returns standard HTTP response codes.\n\
+    \nThe base URL for the API is:  `https://api.subspace.com/`\n\n# Naming Convention\n\
+    \n* Version name currently in use is: *v1*\n  * Example: `https://api.subspace.com/v1`\n\
+    \n# Authentication\n\n## API Tokens\n\nSubspace authenticates your API requests\
+    \ using JWT Bearer tokens. To use any Subspace API, you must pass a Bearer token\
+    \ with each request. If you do not include your Bearer token when making an API\
+    \ request, or use one that is incorrect or disabled, Subspace returns an error.\n\
+    \nBearer tokens are granted by requesting one (as noted below) and presenting\
+    \ your publishable (client_id) and secret (client_secret) tokens.   \n\nSubspace\
+    \ provides two types of API tokens: publishable (client_id) and secret (client_secret).\
+    \  These are available in the Subspace console.\n  * **Publishable** API tokens\
+    \ (client_id) are meant solely to identify your account with Subspace, they aren’\
+    t secret. They can be published in places like your website JavaScript code, or\
+    \ in an iPhone or Android app.\n  * **Secret** API tokens (client_secret) should\
+    \ be kept confidential and only stored on your own servers. Your account’s secret\
     \ API token will allow you to acquire a valid JWT token authorized to perform\
     \ any API request to Subspace.\n\n## Getting a JWT Bearer Token\n\nSubspace uses\
     \ auth0 for JWT token management.  You can acquire a JWT token by utilizing `https://id.subspace.com`\
@@ -32,32 +28,75 @@ info:
     \ you will have to use your Subspace private API and public token to request a\
     \ new one.\n  * The Subspace private token can be rotated from within the Subspace\
     \ console.  Rotation may take up to 10 minutes for all systems to update state\
-    \ to invalidate the older token and enable the new one.\n* **Keep your secret\
+    \ to invalidate the older token and enable the new one.\n  * **Keep your secret\
     \ token safe.** Your secret token can make any API call on behalf of your account,\
     \ including changes that may impact billing such as enabling pay-as-you-go charges.\
     \ Do not store your secret token in your version control system. Do not use your\
     \ secret token outside your web server, such as a browser, mobile app, or distributed\
-    \ file.\n  * **You may use the Subspace console to acquire an API token.**\n *\
-    \ **You may use the Subspace console to disable pay-as-you-go.** This may prevent\
-    \ unexpected charges due to unauthorized or abnormal usage.\n\n**Acquiring a valid\
-    \ JWT**\n\nCommand line example:\n```\ncurl --request POST \n         --url 'https://id.subspace.com/oauth/token'\
-    \ \n         --header 'content-type: application/json' \n         --data '{ \"\
-    client_id\": YOURCLIENTID, \"client_secret\": YOURCLIENTSECRET, \"audience\":\
-    \ \"https://api.subspace.com/\", \"grant_type\": \"client_credentials\" }'\n```\n"
+    \ file.\n  * **You may use the Subspace console to acquire an API token.**\n \
+    \ * **You may use the Subspace console to disable pay-as-you-go.** This may prevent\
+    \ unexpected charges due to unauthorized or abnormal usage.\n  * **Do not embed\
+    \ API keys directly in code.** Instead of directly embedding API keys in your\
+    \ application’s code, put them in environment variables, or within include files\
+    \ that are stored separately from the bulk of your code—outside the source repository\
+    \ of your application. Then, if you share your code, the API keys will not be\
+    \ included in the shared files.\n  * **Do not store API tokens inside your application’\
+    s source control.** If you store API tokens in files, keep the files outside your\
+    \ application’s source control system. This is particularly important if you use\
+    \ a public source code management system such as GitHub.\n  * **Limit access with\
+    \ restricted tokens.** The Subspace console will allow you to specify the IP addresses\
+    \ or referrer URLs associated with each token, reducing the impact of a compromised\
+    \ API token.\n  * **Use independent API tokens for different apps.** This limits\
+    \ the scope of each token. If an API token is compromised, you can rotate the\
+    \ impacted token without impacting other API tokens.\n\n# Error Codes\n\nSubspace\
+    \ uses HTTP response codes to indicate the success or failure of an API request.\
+    \ \n\nGeneral HTML status codes:\n  * 2xx Success. \n  * 4xx Errors based on information\
+    \ provided in the request.\n  * 5xx Errors on Subspace servers.\n  \n# Security\n\
+    \nWe provide a valid, signed certificate for our API methods. Be sure your connection\
+    \ library supports HTTPS with the SNI extension.\n\n# REST How-To\n\nMaking your\
+    \ first REST API call is easy and can be done from your browser.  You will need:\n\
+    \  * Your **secret** token and public client token, both found in the Console.\n\
+    \  * The URL for the type of data you would like to request.\n\nFirst, acquire\
+    \ a JWT Bearer Token.  Command line example:\n    \n    curl --request POST \\\
+    \n         --url \"https://id.subspace.com/oauth/token\" \\\n         --header\
+    \ 'content-type: application/json' \\\n         --data '{ \"client_id\": YOURCLIENTID,\
+    \ \"client_secret\": YOURCLIENTSECRET, \"audience\": \"https://api.subspace.com/\"\
+    , \"grant_type\": \"client_credentials\" }'\n\nREST calls are made up of:\n  *\
+    \ Base url: Example: `https://api.subspace.com`\n  * Version: Example: `v1`\n\
+    \  * The API Endpoint and any parameters: `accelerators/acc_NDA3MUI5QzUtOTY4MC00Nz`\
+    \ where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID\n  * Accelerator\
+    \ ids are always of the format `acc_NDA3MUI5QzUtOTY4MC00Nz`, with a \"acc_\" prefix\
+    \ followed by 22 characters.\n  * Project ids are always of the format `prj_00Iaqxjo71vNL1uLKKo5Kn`,\
+    \ with a \"prj_\" prefix followed by 22 characters.\n  * Token header: All REST\
+    \ requests require a valid JWT Bearer token which should be added as an “Authorization”\
+    \ header to the request:\n      \n      `Authorization: Bearer YOUR_TOKEN_HERE`\n\
+    \  \n## Authorization header example\n\nIf your API token was “my_api_token”,\
+    \ you would add...\n\n    Authorization: Bearer my_api_token\n    \n...to the\
+    \ header.\n\n## Command line examples\n\nTo list your current open packet_accelerators\
+    \ using the token “my_api_token”:\n\n    curl -H “Authorization: Bearer my_api_token”\
+    \ https://api.subspace.com/v1/accelerators\n    \nAlternately, to get the details\
+    \ of a specific accelerator whose id is 'abcd-ef01-2345':\n\n    curl -H “Authorization:\
+    \ Bearer my_api_token” https://api.subspace.com/v1/accelerators/abcd-ef01-2345\n\
+    \n# API Versioning\n\nSubspace will release new versions when we make backwards-incompatible\
+    \ changes to the API. We will give advance notice before releasing a new version\
+    \ or retiring an old version.\n\nBackwards compatible changes:\n  * Adding new\
+    \ response attributes\n  * Adding new endpoints\n  * Adding new methods to an\
+    \ existing endpoint\n  * Adding new query string parameters\n  * Adding new path\
+    \ parameters\n  * Adding new webhook events\n  * Adding new streaming endpoints\n\
+    \  * Changing the order of existing response attributes\n  \nVersions are added\
+    \ to the base url, for example:\n  * `https://api.subspace.com/v1`\n\nCurrent\
+    \ Version is **v1:** `https://api.subspace.com/v1`\n"
   license:
     name: CC BY-NC-ND 4.0
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
   title: Subspace Product API
   version: "1.0"
-  x-something-something: yadda
 externalDocs:
   description: Learn more with examples
   url: https://subspace.com/
 servers:
-- description: Production API host server
+- description: Current API host server
   url: https://api.subspace.com
-- description: Debug API host server
-  url: https://api.subspace-alpha.com
 security:
 - accessCode:
   - accelerators:read
@@ -67,7 +106,6 @@ security:
 paths:
   /v1/accelerators:
     get:
-      description: ListAccelerators returns a list of all existing PacketAccelerators.
       operationId: AcceleratorService_List
       parameters:
       - explode: true
@@ -86,14 +124,6 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: q Provides a query string which filters accelerators in the response.
-        explode: true
-        in: query
-        name: q
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -101,30 +131,52 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1ListAcceleratorsResponse'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
           description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
                 type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: ListAccelerators
       tags:
       - AcceleratorService
       x-accepts: application/json
     post:
-      description: CreateAccelerator generates a new PacketAccelerator
       operationId: AcceleratorService_Create
       parameters:
       - description: Value is the returned etag of a get request.  If a retry sends
@@ -153,18 +205,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1Accelerator'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
           description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
                 type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
@@ -177,15 +253,12 @@ paths:
               schema:
                 type: string
           description: Accelerator created
-      summary: CreateAccelerator
       tags:
       - AcceleratorService
       x-contentType: application/json
       x-accepts: application/json
   /v1/accelerators/{id}:
     delete:
-      description: DeleteAccelerator deletes the given PacketAccelerator, specified
-        by its id
       operationId: AcceleratorService_Delete
       parameters:
       - explode: false
@@ -202,31 +275,52 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1DeleteAcceleratorResponse'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
           description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
                 type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: DeleteAccelerator
       tags:
       - AcceleratorService
       x-accepts: application/json
     get:
-      description: GetAccelerator returns the details of a given PacketAccelerator,
-        specified by its id
       operationId: AcceleratorService_Get
       parameters:
       - explode: false
@@ -251,31 +345,52 @@ paths:
               schema:
                 type: integer
               style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
           description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
                 type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: GetAccelerator
       tags:
       - AcceleratorService
       x-accepts: application/json
     put:
-      description: UpdateAccelerator updates an existing accelerator, specified by
-        its id
       operationId: AcceleratorService_Update
       parameters:
       - explode: false
@@ -307,18 +422,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1Accelerator'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
           description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
                 type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
@@ -331,14 +470,12 @@ paths:
               schema:
                 type: string
           description: Edit conflict
-      summary: UpdateAccelerator
       tags:
       - AcceleratorService
       x-contentType: application/json
       x-accepts: application/json
   /v1/sip-teleports:
     get:
-      description: ListSipTeleports lists all SIP Teleports
       operationId: SipTeleportService_List
       parameters:
       - explode: true
@@ -364,33 +501,72 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1ListSipTeleportResponse'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
-          description: Returned when the user does not have permission to access the
-            resource.
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
-                format: string
-                type: string
+                type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: ListSipTeleports
       tags:
       - SipTeleportService
       x-accepts: application/json
     post:
-      description: CreateSipTeleport creates a new SIP Teleport
       operationId: SipTeleportService_Create
+      parameters:
+      - description: Value is the returned etag of a get request.  If a retry sends
+          an Idempotency-Key that has been seen before, the existing teleport is returned
+          with the status code of 200
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          format: string
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1CreateSipTeleport'
+        description: Required parameters to create a new SIPTeleport
+        required: true
       responses:
         "200":
           content:
@@ -398,34 +574,54 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1SipTeleportResponse'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
-          description: Returned when the user does not have permission to access the
-            resource.
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
-                format: string
-                type: string
+                type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: CreateSipTeleport
       tags:
       - SipTeleportService
+      x-contentType: application/json
       x-accepts: application/json
   /v1/sip-teleports/{id}:
     delete:
-      description: DeleteSipTeleport deletes an existing SIP Teleport, specified by
-        its id
       operationId: SipTeleportService_Delete
       parameters:
       - explode: false
@@ -442,33 +638,52 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1SipTeleportResponse'
           description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
-          description: Returned when the user does not have permission to access the
-            resource.
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
-                format: string
-                type: string
+                type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: DeleteSipTeleport
       tags:
       - SipTeleportService
       x-accepts: application/json
     get:
-      description: GetSipTeleport fetches the details of a specific SIP Teleport,
-        specified by its id
       operationId: SipTeleportService_Get
       parameters:
       - explode: false
@@ -485,34 +700,266 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1SipTeleportResponse'
           description: A successful response.
+          headers:
+            ETag:
+              description: Include in the headers of a subsequent PUT to avoid concurrency
+                issues
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
         "401":
           content:
             application/json:
               schema:
                 type: object
-          description: Returned when the user does not have permission to access the
-            resource.
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
         "404":
           content:
             application/json:
               schema:
-                format: string
-                type: string
+                type: object
           description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: GetSipTeleport
       tags:
       - SipTeleportService
       x-accepts: application/json
     put:
-      description: UpdateSipTeleport updates an existing SIP Teleport, specified by
-        its id
       operationId: SipTeleportService_Update
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1UpdateSipTeleport'
+        description: Parameters to update an existing SIPTeleport, minimum requirement
+          of one of them defined to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1SipTeleportResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - SipTeleportService
+      x-contentType: application/json
+      x-accepts: application/json
+  /v1/accelerators/{accelerator_id}/sessions:
+    get:
+      operationId: SessionService_List
+      parameters:
+      - explode: false
+        in: path
+        name: accelerator_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: before
+        required: false
+        schema:
+          format: uint64
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1ListSessionsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - SessionService
+      x-accepts: application/json
+  /v1/projects:
+    get:
+      operationId: ProjectService_List
+      parameters:
+      - explode: true
+        in: query
+        name: before
+        required: false
+        schema:
+          format: uint64
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1ListProjectsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - ProjectService
+      x-accepts: application/json
+    post:
+      operationId: ProjectService_Create
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1Project'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - ProjectService
+      x-accepts: application/json
+  /v1/projects/{id}:
+    get:
+      operationId: ProjectService_Get
       parameters:
       - explode: false
         in: path
@@ -526,37 +973,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/v1SipTeleportResponse'
+                $ref: '#/components/schemas/v1Project'
           description: A successful response.
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema:
-                format: string
-                type: string
-          description: Returned when the resource does not exist.
         default:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: UpdateSipTeleport
       tags:
-      - SipTeleportService
+      - ProjectService
+      x-accepts: application/json
+    put:
+      operationId: ProjectService_Update
+      parameters:
+      - description: id is the project identity
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1Project'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - ProjectService
       x-accepts: application/json
 components:
   schemas:
     protobufAny:
       properties:
-        typeUrl:
+        type_url:
           type: string
         value:
           format: byte
@@ -564,30 +1023,20 @@ components:
           type: string
       type: object
     rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
       type: object
     v1Accelerator:
       example:
-        destinationIp: destinationIp
-        destinationPort: 0
-        subspacePort: 6
-        subspaceIp: subspaceIp
+        subspace_port: 6
+        destination_ip: destination_ip
+        destination_port: 0
         name: name
+        subspace_ip: subspace_ip
+        subspace_ipv4: subspace_ipv4
         id: id
-        subspaceIpv4: subspaceIpv4
       properties:
-        destinationIp:
+        destination_ip:
           type: string
-        destinationPort:
+        destination_port:
           format: int64
           type: integer
         id:
@@ -596,12 +1045,12 @@ components:
           type: string
         protocol:
           $ref: '#/components/schemas/v1Protocol'
-        subspaceIp:
+        subspace_ip:
           title: deprecated, present in the exposed tunnelservice now
           type: string
-        subspaceIpv4:
+        subspace_ipv4:
           type: string
-        subspacePort:
+        subspace_port:
           format: int64
           type: integer
       type: object
@@ -609,30 +1058,30 @@ components:
       type: object
     v1ListAcceleratorsResponse:
       example:
-        nextPage:
+        next_page:
           before: before
           limit: 1
         accelerators:
-        - destinationIp: destinationIp
-          destinationPort: 0
-          subspacePort: 6
-          subspaceIp: subspaceIp
+        - subspace_port: 6
+          destination_ip: destination_ip
+          destination_port: 0
           name: name
+          subspace_ip: subspace_ip
+          subspace_ipv4: subspace_ipv4
           id: id
-          subspaceIpv4: subspaceIpv4
-        - destinationIp: destinationIp
-          destinationPort: 0
-          subspacePort: 6
-          subspaceIp: subspaceIp
+        - subspace_port: 6
+          destination_ip: destination_ip
+          destination_port: 0
           name: name
+          subspace_ip: subspace_ip
+          subspace_ipv4: subspace_ipv4
           id: id
-          subspaceIpv4: subspaceIpv4
       properties:
         accelerators:
           items:
             $ref: '#/components/schemas/v1Accelerator'
           type: array
-        nextPage:
+        next_page:
           $ref: '#/components/schemas/v1NextPage'
       type: object
     v1NextPage:
@@ -663,67 +1112,63 @@ components:
       type: string
     v1ListSipTeleportResponse:
       example:
-        nextPage:
+        next_page:
           before: before
           limit: 1
-        sipTeleports:
-        - dateCreated: 2000-01-23T04:56:07.000+00:00
+        sip_teleports:
+        - date_updated: 2000-01-23T04:56:07.000+00:00
+          teleport_entry_points:
+          - address: address
+          - address: address
+          date_created: 2000-01-23T04:56:07.000+00:00
+          name: name
           destination: destination
           id: id
-          teleportEntryPoints:
+        - date_updated: 2000-01-23T04:56:07.000+00:00
+          teleport_entry_points:
           - address: address
           - address: address
-          version: 0
-          dateUpdated: 2000-01-23T04:56:07.000+00:00
-        - dateCreated: 2000-01-23T04:56:07.000+00:00
+          date_created: 2000-01-23T04:56:07.000+00:00
+          name: name
           destination: destination
           id: id
-          teleportEntryPoints:
-          - address: address
-          - address: address
-          version: 0
-          dateUpdated: 2000-01-23T04:56:07.000+00:00
       properties:
-        nextPage:
-          $ref: '#/components/schemas/v1NextPage'
-        sipTeleports:
+        sip_teleports:
           items:
             $ref: '#/components/schemas/v1SipTeleportResponse'
           type: array
+        next_page:
+          $ref: '#/components/schemas/v1NextPage'
       type: object
     v1SipTeleportResponse:
       example:
-        dateCreated: 2000-01-23T04:56:07.000+00:00
+        date_updated: 2000-01-23T04:56:07.000+00:00
+        teleport_entry_points:
+        - address: address
+        - address: address
+        date_created: 2000-01-23T04:56:07.000+00:00
+        name: name
         destination: destination
         id: id
-        teleportEntryPoints:
-        - address: address
-        - address: address
-        version: 0
-        dateUpdated: 2000-01-23T04:56:07.000+00:00
       properties:
-        dateCreated:
-          format: date-time
+        id:
           type: string
-        dateUpdated:
-          format: date-time
+        name:
           type: string
         destination:
           type: string
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/v1SipTeleportStatus'
-        teleportEntryPoints:
+        teleport_entry_points:
           items:
             $ref: '#/components/schemas/v1TeleportAddresses'
           type: array
-        version:
-          format: int64
-          title: |-
-            version is provided in PUT requests in order to detect editing
-            conflicts
-          type: integer
+        status:
+          $ref: '#/components/schemas/v1SipTeleportStatus'
+        date_created:
+          format: date-time
+          type: string
+        date_updated:
+          format: date-time
+          type: string
       type: object
     v1SipTeleportStatus:
       default: DISABLED
@@ -737,7 +1182,7 @@ components:
       properties:
         address:
           type: string
-        transportType:
+        transport_type:
           $ref: '#/components/schemas/v1TransportType'
       type: object
     v1TransportType:
@@ -746,6 +1191,126 @@ components:
       - UDP_TCP
       - TLS
       type: string
+    v1ListSessionsResponse:
+      example:
+        next_page:
+          before: before
+          limit: 1
+        sessions:
+        - client_port: 0
+          subspace_port: 6
+          subspace_ip: subspace_ip
+          client_ip: client_ip
+        - client_port: 0
+          subspace_port: 6
+          subspace_ip: subspace_ip
+          client_ip: client_ip
+      properties:
+        sessions:
+          items:
+            $ref: '#/components/schemas/v1Session'
+          type: array
+        next_page:
+          $ref: '#/components/schemas/v1NextPage'
+      type: object
+    v1Session:
+      example:
+        client_port: 0
+        subspace_port: 6
+        subspace_ip: subspace_ip
+        client_ip: client_ip
+      properties:
+        client_ip:
+          type: string
+        client_port:
+          format: int64
+          type: integer
+        subspace_ip:
+          type: string
+        subspace_port:
+          format: int64
+          type: integer
+      type: object
+    v1ListProjectsResponse:
+      example:
+        next_page:
+          before: before
+          limit: 1
+        projects:
+        - sipteleport_call_quota: 5
+          rtpspeed_limit_gb: 5
+          accelerator_request_port: true
+          name: name
+          id: id
+          accelerator_quota: 0
+          sipteleport_quota: 1
+          globalturn_limit_gb: 6
+        - sipteleport_call_quota: 5
+          rtpspeed_limit_gb: 5
+          accelerator_request_port: true
+          name: name
+          id: id
+          accelerator_quota: 0
+          sipteleport_quota: 1
+          globalturn_limit_gb: 6
+      properties:
+        projects:
+          items:
+            $ref: '#/components/schemas/v1Project'
+          type: array
+        next_page:
+          $ref: '#/components/schemas/v1NextPage'
+      type: object
+    v1Project:
+      example:
+        sipteleport_call_quota: 5
+        rtpspeed_limit_gb: 5
+        accelerator_request_port: true
+        name: name
+        id: id
+        accelerator_quota: 0
+        sipteleport_quota: 1
+        globalturn_limit_gb: 6
+      properties:
+        id:
+          title: id is the project identity
+          type: string
+        name:
+          title: id is the project identity
+          type: string
+        accelerator_quota:
+          format: int64
+          title: |-
+            accelerator_quota limits the number of permitted simultaneous
+            Packet Accelerators
+          type: integer
+        accelerator_request_port:
+          title: accelerator_request_port permits accelerator POST bodies to specify
+            the `subspace_port`
+          type: boolean
+        globalturn_limit_gb:
+          format: int64
+          title: |-
+            globalturn_limit_gb limits the data transferred via TURN over the
+            lifetime of the project
+          type: integer
+        sipteleport_quota:
+          format: int64
+          title: |-
+            sipteleport_quota limits the number of permitted simultaneous
+            SIP Teleports
+          type: integer
+        sipteleport_call_quota:
+          format: int64
+          title: |-
+            sipteleport_call_quota limits the number of permitted
+            simultaneous SIP calls for all SIP Teleports
+          type: integer
+        rtpspeed_limit_gb:
+          format: int64
+          title: rtpspeed_limit_gb limits the
+          type: integer
+      type: object
     body:
       properties:
         protocol:
@@ -784,6 +1349,33 @@ components:
           description: Destination port, e.g. 443
           type: integer
       type: object
+    v1CreateSipTeleport:
+      properties:
+        name:
+          description: Name of SIPTeleport
+          type: string
+        destination:
+          description: Destination of SIPTeleport
+          type: string
+      required:
+      - destination
+      - name
+      type: object
+    v1UpdateSipTeleport:
+      properties:
+        name:
+          description: Name of SIPTeleport
+          type: string
+        destination:
+          description: Destination of SIPTeleport
+          type: string
+        status:
+          $ref: '#/components/schemas/v1SipTeleportStatus'
+      required:
+      - destination
+      - name
+      - status
+      type: object
   securitySchemes:
     accessCode:
       flows:
@@ -793,6 +1385,10 @@ components:
             accelerators:write: allows administration of PacketAccelerators
             sipteleport:read: allows reading details about provisioned SIPTeleport
             sipteleport:write: allows administration of SIPTeleport
+            sessions:read: allows reading details about PacketAccelerator sessions
+            sessions:write: allows administration of PacketAccelerator sessions
+            projects:read: allows reading details about projects
+            projects:write: allows administration of projects
           tokenUrl: https://id.subspace.com/oauth/token
       type: oauth2
 
