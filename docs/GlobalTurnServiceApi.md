@@ -1,15 +1,15 @@
-# SessionServiceApi
+# GlobalTurnServiceApi
 
 All URIs are relative to *https://api.subspace.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**sessionServiceList**](SessionServiceApi.md#sessionServiceList) | **GET** /v1/accelerator/{accelerator_id}/session | 
+[**globalTurnServiceGetGlobalTurn**](GlobalTurnServiceApi.md#globalTurnServiceGetGlobalTurn) | **POST** /v1/globalturn | 
 
 
-<a name="sessionServiceList"></a>
-# **sessionServiceList**
-> V1ListSessionsResponse sessionServiceList(acceleratorId, before, limit)
+<a name="globalTurnServiceGetGlobalTurn"></a>
+# **globalTurnServiceGetGlobalTurn**
+> V1GlobalTurnResponse globalTurnServiceGetGlobalTurn()
 
 
 
@@ -21,7 +21,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.SessionServiceApi;
+import org.openapitools.client.api.GlobalTurnServiceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -32,15 +32,12 @@ public class Example {
     OAuth accessCode = (OAuth) defaultClient.getAuthentication("accessCode");
     accessCode.setAccessToken("YOUR ACCESS TOKEN");
 
-    SessionServiceApi apiInstance = new SessionServiceApi(defaultClient);
-    String acceleratorId = "acceleratorId_example"; // String | 
-    String before = "before_example"; // String | 
-    Long limit = 56L; // Long | 
+    GlobalTurnServiceApi apiInstance = new GlobalTurnServiceApi(defaultClient);
     try {
-      V1ListSessionsResponse result = apiInstance.sessionServiceList(acceleratorId, before, limit);
+      V1GlobalTurnResponse result = apiInstance.globalTurnServiceGetGlobalTurn();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SessionServiceApi#sessionServiceList");
+      System.err.println("Exception when calling GlobalTurnServiceApi#globalTurnServiceGetGlobalTurn");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -51,16 +48,11 @@ public class Example {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **acceleratorId** | **String**|  |
- **before** | **String**|  | [optional]
- **limit** | **Long**|  | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**V1ListSessionsResponse**](V1ListSessionsResponse.md)
+[**V1GlobalTurnResponse**](V1GlobalTurnResponse.md)
 
 ### Authorization
 

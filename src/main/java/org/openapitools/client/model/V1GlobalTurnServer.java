@@ -11,63 +11,175 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
-import okio.Okio;
-import okio.Sink;
+/**
+ * V1GlobalTurnServer
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+public class V1GlobalTurnServer {
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
 
-public class ProgressRequestBody extends RequestBody {
+  public static final String SERIALIZED_NAME_CREDENTIAL = "credential";
+  @SerializedName(SERIALIZED_NAME_CREDENTIAL)
+  private String credential;
 
-    private final RequestBody requestBody;
+  public static final String SERIALIZED_NAME_URL = "url";
+  @SerializedName(SERIALIZED_NAME_URL)
+  private String url;
 
-    private final ApiCallback callback;
+  public static final String SERIALIZED_NAME_URLS = "urls";
+  @SerializedName(SERIALIZED_NAME_URLS)
+  private String urls;
 
-    public ProgressRequestBody(RequestBody requestBody, ApiCallback callback) {
-        this.requestBody = requestBody;
-        this.callback = callback;
+
+  public V1GlobalTurnServer username(String username) {
+    
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Get username
+   * @return username
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getUsername() {
+    return username;
+  }
+
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+
+  public V1GlobalTurnServer credential(String credential) {
+    
+    this.credential = credential;
+    return this;
+  }
+
+   /**
+   * Get credential
+   * @return credential
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCredential() {
+    return credential;
+  }
+
+
+  public void setCredential(String credential) {
+    this.credential = credential;
+  }
+
+
+  public V1GlobalTurnServer url(String url) {
+    
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Get url
+   * @return url
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+
+  public V1GlobalTurnServer urls(String urls) {
+    
+    this.urls = urls;
+    return this;
+  }
+
+   /**
+   * Get urls
+   * @return urls
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getUrls() {
+    return urls;
+  }
+
+
+  public void setUrls(String urls) {
+    this.urls = urls;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @Override
-    public MediaType contentType() {
-        return requestBody.contentType();
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    V1GlobalTurnServer v1GlobalTurnServer = (V1GlobalTurnServer) o;
+    return Objects.equals(this.username, v1GlobalTurnServer.username) &&
+        Objects.equals(this.credential, v1GlobalTurnServer.credential) &&
+        Objects.equals(this.url, v1GlobalTurnServer.url) &&
+        Objects.equals(this.urls, v1GlobalTurnServer.urls);
+  }
 
-    @Override
-    public long contentLength() throws IOException {
-        return requestBody.contentLength();
+  @Override
+  public int hashCode() {
+    return Objects.hash(username, credential, url, urls);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class V1GlobalTurnServer {\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
-    }
-
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
-            }
-        };
-    }
 }
+

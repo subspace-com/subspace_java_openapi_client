@@ -2,7 +2,7 @@
 
 Subspace Product API
 - API version: 1.0
-  - Build date: 2021-09-01T21:44:57.762Z[GMT]
+  - Build date: 2021-09-28T23:33:14.081Z[GMT]
 
 # Introduction
 
@@ -19,7 +19,7 @@ The base URL for the API is:  `https://api.subspace.com/`
 
 ## API Tokens
 
-Subspace authenticates your API requests using JWT Bearer tokens. The provided client library requires this JWT to be set before it can be used, by setting the local access token in the local configuration.  This is done by updating the configuration line marked "YOUR ACCESS TOKEN" by replacing the text "YOUR ACCESS TOKEN" with your JWT Bearer token.
+Subspace authenticates your API requests using JWT Bearer tokens. To use any Subspace API, you must pass a Bearer token with each request. If you do not include your Bearer token when making an API request, or use one that is incorrect or disabled, Subspace returns an error.
 
 Bearer tokens are granted by requesting one (as noted below) and presenting your publishable (client_id) and secret (client_secret) tokens.   
 
@@ -64,23 +64,39 @@ Making your first REST API call is easy and can be done from your browser.  You 
 
 First, acquire a JWT Bearer Token.  Command line example:
     
-```
     curl --request POST \\
          --url \"https://id.subspace.com/oauth/token\" \\
          --header 'content-type: application/json' \\
-         --data '{ \"client_id\": YOURCLIENTID, \"client_secret\": YOURCLIENTSECRET, \"audience\": \"https://api.subspace.com/\", \"grant_type\": \"client_credentials\" }'
-```
+         --data '{ \"client_id\": \"YOURCLIENTID\", \"client_secret\": \"YOURCLIENTSECRET\", \"audience\": \"https://api.subspace.com/\", \"grant_type\": \"client_credentials\" }'
 
 REST calls are made up of:
   * Base url: Example: `https://api.subspace.com`
   * Version: Example: `v1`
-  * The API Endpoint and any parameters: `accelerators/acc_NDA3MUI5QzUtOTY4MC00Nz` where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID
+  * The API Endpoint and any parameters: `accelerator/acc_NDA3MUI5QzUtOTY4MC00Nz` where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID
   * Accelerator ids are always of the format `acc_NDA3MUI5QzUtOTY4MC00Nz`, with a \"acc_\" prefix followed by 22 characters.
   * Project ids are always of the format `prj_00Iaqxjo71vNL1uLKKo5Kn`, with a \"prj_\" prefix followed by 22 characters.
   * Token header: All REST requests require a valid JWT Bearer token which should be added as an “Authorization” header to the request:
       
       `Authorization: Bearer YOUR_TOKEN_HERE`
   
+## Authorization header example
+
+If your API token was “my_api_token”, you would add...
+
+    Authorization: Bearer my_api_token
+    
+...to the header.
+
+## Command line examples
+
+To list your current open packet_accelerators using the token “my_api_token”:
+
+    curl -H “Authorization: Bearer my_api_token” https://api.subspace.com/v1/accelerator
+    
+Alternately, to get the details of a specific accelerator whose id is 'abcd-ef01-2345':
+
+    curl -H “Authorization: Bearer my_api_token” https://api.subspace.com/v1/accelerator/abcd-ef01-2345
+
 # API Versioning
 
 Subspace will release new versions when we make backwards-incompatible changes to the API. We will give advance notice before releasing a new version or retiring an old version.
@@ -209,21 +225,22 @@ All URIs are relative to *https://api.subspace.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AcceleratorServiceApi* | [**acceleratorServiceCreate**](docs/AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerators | 
-*AcceleratorServiceApi* | [**acceleratorServiceDelete**](docs/AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerators/{id} | 
-*AcceleratorServiceApi* | [**acceleratorServiceGet**](docs/AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerators/{id} | 
-*AcceleratorServiceApi* | [**acceleratorServiceList**](docs/AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerators | 
-*AcceleratorServiceApi* | [**acceleratorServiceUpdate**](docs/AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerators/{id} | 
-*ProjectServiceApi* | [**projectServiceCreate**](docs/ProjectServiceApi.md#projectServiceCreate) | **POST** /v1/projects | 
-*ProjectServiceApi* | [**projectServiceGet**](docs/ProjectServiceApi.md#projectServiceGet) | **GET** /v1/projects/{id} | 
-*ProjectServiceApi* | [**projectServiceList**](docs/ProjectServiceApi.md#projectServiceList) | **GET** /v1/projects | 
-*ProjectServiceApi* | [**projectServiceUpdate**](docs/ProjectServiceApi.md#projectServiceUpdate) | **PUT** /v1/projects/{id} | 
-*SessionServiceApi* | [**sessionServiceList**](docs/SessionServiceApi.md#sessionServiceList) | **GET** /v1/accelerators/{accelerator_id}/sessions | 
-*SipTeleportServiceApi* | [**sipTeleportServiceCreate**](docs/SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sip-teleports | 
-*SipTeleportServiceApi* | [**sipTeleportServiceDelete**](docs/SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sip-teleports/{id} | 
-*SipTeleportServiceApi* | [**sipTeleportServiceGet**](docs/SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sip-teleports/{id} | 
-*SipTeleportServiceApi* | [**sipTeleportServiceList**](docs/SipTeleportServiceApi.md#sipTeleportServiceList) | **GET** /v1/sip-teleports | 
-*SipTeleportServiceApi* | [**sipTeleportServiceUpdate**](docs/SipTeleportServiceApi.md#sipTeleportServiceUpdate) | **PUT** /v1/sip-teleports/{id} | 
+*AcceleratorServiceApi* | [**acceleratorServiceCreate**](docs/AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerator | 
+*AcceleratorServiceApi* | [**acceleratorServiceDelete**](docs/AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerator/{id} | 
+*AcceleratorServiceApi* | [**acceleratorServiceGet**](docs/AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerator/{id} | 
+*AcceleratorServiceApi* | [**acceleratorServiceList**](docs/AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerator | 
+*AcceleratorServiceApi* | [**acceleratorServiceUpdate**](docs/AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerator/{id} | 
+*GlobalTurnServiceApi* | [**globalTurnServiceGetGlobalTurn**](docs/GlobalTurnServiceApi.md#globalTurnServiceGetGlobalTurn) | **POST** /v1/globalturn | 
+*ProjectServiceApi* | [**projectServiceCreate**](docs/ProjectServiceApi.md#projectServiceCreate) | **POST** /v1/project | 
+*ProjectServiceApi* | [**projectServiceGet**](docs/ProjectServiceApi.md#projectServiceGet) | **GET** /v1/project/{id} | 
+*ProjectServiceApi* | [**projectServiceList**](docs/ProjectServiceApi.md#projectServiceList) | **GET** /v1/project | 
+*ProjectServiceApi* | [**projectServiceUpdate**](docs/ProjectServiceApi.md#projectServiceUpdate) | **PUT** /v1/project/{id} | 
+*SessionServiceApi* | [**sessionServiceList**](docs/SessionServiceApi.md#sessionServiceList) | **GET** /v1/accelerator/{accelerator_id}/session | 
+*SipTeleportServiceApi* | [**sipTeleportServiceCreate**](docs/SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sipteleport | 
+*SipTeleportServiceApi* | [**sipTeleportServiceDelete**](docs/SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sipteleport/{id} | 
+*SipTeleportServiceApi* | [**sipTeleportServiceGet**](docs/SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sipteleport/{id} | 
+*SipTeleportServiceApi* | [**sipTeleportServiceList**](docs/SipTeleportServiceApi.md#sipTeleportServiceList) | **GET** /v1/sipteleport | 
+*SipTeleportServiceApi* | [**sipTeleportServiceUpdate**](docs/SipTeleportServiceApi.md#sipTeleportServiceUpdate) | **PUT** /v1/sipteleport/{id} | 
 
 
 ## Documentation for Models
@@ -233,13 +250,14 @@ Class | Method | HTTP request | Description
  - [ProtobufAny](docs/ProtobufAny.md)
  - [V1Accelerator](docs/V1Accelerator.md)
  - [V1CreateSipTeleport](docs/V1CreateSipTeleport.md)
- - [V1ListAcceleratorsResponse](docs/V1ListAcceleratorsResponse.md)
+ - [V1GlobalTurnResponse](docs/V1GlobalTurnResponse.md)
+ - [V1GlobalTurnServer](docs/V1GlobalTurnServer.md)
+ - [V1ListAcceleratorResponse](docs/V1ListAcceleratorResponse.md)
  - [V1ListProjectsResponse](docs/V1ListProjectsResponse.md)
  - [V1ListSessionsResponse](docs/V1ListSessionsResponse.md)
  - [V1ListSipTeleportResponse](docs/V1ListSipTeleportResponse.md)
  - [V1NextPage](docs/V1NextPage.md)
  - [V1Project](docs/V1Project.md)
- - [V1Protocol](docs/V1Protocol.md)
  - [V1Session](docs/V1Session.md)
  - [V1SipTeleportResponse](docs/V1SipTeleportResponse.md)
  - [V1SipTeleportStatus](docs/V1SipTeleportStatus.md)
@@ -259,12 +277,15 @@ Authentication schemes defined for the API:
 - **Scopes**: 
   - accelerators:read: allows reading details about provisioned PacketAccelerators
   - accelerators:write: allows administration of PacketAccelerators
+  - console:access: allows access to the console
   - sipteleport:read: allows reading details about provisioned SIPTeleport
   - sipteleport:write: allows administration of SIPTeleport
   - sessions:read: allows reading details about PacketAccelerator sessions
-  - sessions:write: allows administration of PacketAccelerator sessions
   - projects:read: allows reading details about projects
   - projects:write: allows administration of projects
+  - globalturn:access: allows administration of GlobalTurn
+  - rtpspeed:read: allows reading details about rtpspeed
+  - rtpspeed:write: allows administration of rtpspeed
 
 
 ## Recommendation

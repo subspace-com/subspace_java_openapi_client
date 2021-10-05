@@ -4,11 +4,11 @@ All URIs are relative to *https://api.subspace.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**acceleratorServiceCreate**](AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerators | 
-[**acceleratorServiceDelete**](AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerators/{id} | 
-[**acceleratorServiceGet**](AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerators/{id} | 
-[**acceleratorServiceList**](AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerators | 
-[**acceleratorServiceUpdate**](AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerators/{id} | 
+[**acceleratorServiceCreate**](AcceleratorServiceApi.md#acceleratorServiceCreate) | **POST** /v1/accelerator | 
+[**acceleratorServiceDelete**](AcceleratorServiceApi.md#acceleratorServiceDelete) | **DELETE** /v1/accelerator/{id} | 
+[**acceleratorServiceGet**](AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerator/{id} | 
+[**acceleratorServiceList**](AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerator | 
+[**acceleratorServiceUpdate**](AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerator/{id} | 
 
 
 <a name="acceleratorServiceCreate"></a>
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 <a name="acceleratorServiceList"></a>
 # **acceleratorServiceList**
-> V1ListAcceleratorsResponse acceleratorServiceList(before, limit)
+> V1ListAcceleratorResponse acceleratorServiceList(before, limit)
 
 
 
@@ -259,7 +259,7 @@ public class Example {
     String before = "before_example"; // String | 
     Long limit = 56L; // Long | 
     try {
-      V1ListAcceleratorsResponse result = apiInstance.acceleratorServiceList(before, limit);
+      V1ListAcceleratorResponse result = apiInstance.acceleratorServiceList(before, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AcceleratorServiceApi#acceleratorServiceList");
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1ListAcceleratorsResponse**](V1ListAcceleratorsResponse.md)
+[**V1ListAcceleratorResponse**](V1ListAcceleratorResponse.md)
 
 ### Authorization
 

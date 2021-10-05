@@ -11,63 +11,99 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.client.model.V1GlobalTurnServer;
 
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
-import okio.Okio;
-import okio.Sink;
+/**
+ * V1GlobalTurnResponse
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+public class V1GlobalTurnResponse {
+  public static final String SERIALIZED_NAME_ICE_SERVERS = "ice_servers";
+  @SerializedName(SERIALIZED_NAME_ICE_SERVERS)
+  private List<V1GlobalTurnServer> iceServers = null;
 
-public class ProgressRequestBody extends RequestBody {
 
-    private final RequestBody requestBody;
+  public V1GlobalTurnResponse iceServers(List<V1GlobalTurnServer> iceServers) {
+    
+    this.iceServers = iceServers;
+    return this;
+  }
 
-    private final ApiCallback callback;
-
-    public ProgressRequestBody(RequestBody requestBody, ApiCallback callback) {
-        this.requestBody = requestBody;
-        this.callback = callback;
+  public V1GlobalTurnResponse addIceServersItem(V1GlobalTurnServer iceServersItem) {
+    if (this.iceServers == null) {
+      this.iceServers = new ArrayList<V1GlobalTurnServer>();
     }
+    this.iceServers.add(iceServersItem);
+    return this;
+  }
 
-    @Override
-    public MediaType contentType() {
-        return requestBody.contentType();
+   /**
+   * Get iceServers
+   * @return iceServers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<V1GlobalTurnServer> getIceServers() {
+    return iceServers;
+  }
+
+
+  public void setIceServers(List<V1GlobalTurnServer> iceServers) {
+    this.iceServers = iceServers;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @Override
-    public long contentLength() throws IOException {
-        return requestBody.contentLength();
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    V1GlobalTurnResponse v1GlobalTurnResponse = (V1GlobalTurnResponse) o;
+    return Objects.equals(this.iceServers, v1GlobalTurnResponse.iceServers);
+  }
 
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
+  @Override
+  public int hashCode() {
+    return Objects.hash(iceServers);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class V1GlobalTurnResponse {\n");
+    sb.append("    iceServers: ").append(toIndentedString(iceServers)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
-            }
-        };
-    }
 }
+

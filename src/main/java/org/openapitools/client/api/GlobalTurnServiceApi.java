@@ -27,7 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.V1ListSessionsResponse;
+import org.openapitools.client.model.V1GlobalTurnResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -35,14 +35,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SessionServiceApi {
+public class GlobalTurnServiceApi {
     private ApiClient localVarApiClient;
 
-    public SessionServiceApi() {
+    public GlobalTurnServiceApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SessionServiceApi(ApiClient apiClient) {
+    public GlobalTurnServiceApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -55,10 +55,7 @@ public class SessionServiceApi {
     }
 
     /**
-     * Build call for sessionServiceList
-     * @param acceleratorId  (required)
-     * @param before  (optional)
-     * @param limit  (optional)
+     * Build call for globalTurnServiceGetGlobalTurn
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -75,26 +72,17 @@ public class SessionServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sessionServiceListCall(String acceleratorId, String before, Long limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call globalTurnServiceGetGlobalTurnCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1/accelerator/{accelerator_id}/session"
-            .replaceAll("\\{" + "accelerator_id" + "\\}", localVarApiClient.escapeString(acceleratorId.toString()));
+        String localVarPath = "/v1/globalturn";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (before != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before", before));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -111,19 +99,14 @@ public class SessionServiceApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         String[] localVarAuthNames = new String[] { "accessCode" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sessionServiceListValidateBeforeCall(String acceleratorId, String before, Long limit, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'acceleratorId' is set
-        if (acceleratorId == null) {
-            throw new ApiException("Missing the required parameter 'acceleratorId' when calling sessionServiceList(Async)");
-        }
+    private okhttp3.Call globalTurnServiceGetGlobalTurnValidateBeforeCall(final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = sessionServiceListCall(acceleratorId, before, limit, _callback);
+        okhttp3.Call localVarCall = globalTurnServiceGetGlobalTurnCall(_callback);
         return localVarCall;
 
     }
@@ -131,10 +114,7 @@ public class SessionServiceApi {
     /**
      * 
      * 
-     * @param acceleratorId  (required)
-     * @param before  (optional)
-     * @param limit  (optional)
-     * @return V1ListSessionsResponse
+     * @return V1GlobalTurnResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -149,18 +129,15 @@ public class SessionServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public V1ListSessionsResponse sessionServiceList(String acceleratorId, String before, Long limit) throws ApiException {
-        ApiResponse<V1ListSessionsResponse> localVarResp = sessionServiceListWithHttpInfo(acceleratorId, before, limit);
+    public V1GlobalTurnResponse globalTurnServiceGetGlobalTurn() throws ApiException {
+        ApiResponse<V1GlobalTurnResponse> localVarResp = globalTurnServiceGetGlobalTurnWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * 
      * 
-     * @param acceleratorId  (required)
-     * @param before  (optional)
-     * @param limit  (optional)
-     * @return ApiResponse&lt;V1ListSessionsResponse&gt;
+     * @return ApiResponse&lt;V1GlobalTurnResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -175,18 +152,15 @@ public class SessionServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<V1ListSessionsResponse> sessionServiceListWithHttpInfo(String acceleratorId, String before, Long limit) throws ApiException {
-        okhttp3.Call localVarCall = sessionServiceListValidateBeforeCall(acceleratorId, before, limit, null);
-        Type localVarReturnType = new TypeToken<V1ListSessionsResponse>(){}.getType();
+    public ApiResponse<V1GlobalTurnResponse> globalTurnServiceGetGlobalTurnWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = globalTurnServiceGetGlobalTurnValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<V1GlobalTurnResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
      * 
-     * @param acceleratorId  (required)
-     * @param before  (optional)
-     * @param limit  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -203,10 +177,10 @@ public class SessionServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sessionServiceListAsync(String acceleratorId, String before, Long limit, final ApiCallback<V1ListSessionsResponse> _callback) throws ApiException {
+    public okhttp3.Call globalTurnServiceGetGlobalTurnAsync(final ApiCallback<V1GlobalTurnResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sessionServiceListValidateBeforeCall(acceleratorId, before, limit, _callback);
-        Type localVarReturnType = new TypeToken<V1ListSessionsResponse>(){}.getType();
+        okhttp3.Call localVarCall = globalTurnServiceGetGlobalTurnValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<V1GlobalTurnResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

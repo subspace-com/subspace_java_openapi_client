@@ -11,63 +11,40 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.api;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.model.V1GlobalTurnResponse;
+import org.junit.Test;
+import org.junit.Ignore;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
-import okio.Okio;
-import okio.Sink;
+/**
+ * API tests for GlobalTurnServiceApi
+ */
+@Ignore
+public class GlobalTurnServiceApiTest {
 
-public class ProgressRequestBody extends RequestBody {
+    private final GlobalTurnServiceApi api = new GlobalTurnServiceApi();
 
-    private final RequestBody requestBody;
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void globalTurnServiceGetGlobalTurnTest() throws ApiException {
+        V1GlobalTurnResponse response = api.globalTurnServiceGetGlobalTurn();
 
-    private final ApiCallback callback;
-
-    public ProgressRequestBody(RequestBody requestBody, ApiCallback callback) {
-        this.requestBody = requestBody;
-        this.callback = callback;
+        // TODO: test validations
     }
-
-    @Override
-    public MediaType contentType() {
-        return requestBody.contentType();
-    }
-
-    @Override
-    public long contentLength() throws IOException {
-        return requestBody.contentLength();
-    }
-
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
-    }
-
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
-            }
-        };
-    }
+    
 }

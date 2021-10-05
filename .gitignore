@@ -19,3 +19,8 @@ hs_err_pid*
 target
 .gradle
 build
+
+.idea/
+NOT_IN_GIT
+Example.java
+.openapi-generator/FILES

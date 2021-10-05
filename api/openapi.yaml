@@ -59,11 +59,11 @@ info:
     \  * The URL for the type of data you would like to request.\n\nFirst, acquire\
     \ a JWT Bearer Token.  Command line example:\n    \n    curl --request POST \\\
     \n         --url \"https://id.subspace.com/oauth/token\" \\\n         --header\
-    \ 'content-type: application/json' \\\n         --data '{ \"client_id\": YOURCLIENTID,\
-    \ \"client_secret\": YOURCLIENTSECRET, \"audience\": \"https://api.subspace.com/\"\
+    \ 'content-type: application/json' \\\n         --data '{ \"client_id\": \"YOURCLIENTID\"\
+    , \"client_secret\": \"YOURCLIENTSECRET\", \"audience\": \"https://api.subspace.com/\"\
     , \"grant_type\": \"client_credentials\" }'\n\nREST calls are made up of:\n  *\
     \ Base url: Example: `https://api.subspace.com`\n  * Version: Example: `v1`\n\
-    \  * The API Endpoint and any parameters: `accelerators/acc_NDA3MUI5QzUtOTY4MC00Nz`\
+    \  * The API Endpoint and any parameters: `accelerator/acc_NDA3MUI5QzUtOTY4MC00Nz`\
     \ where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID\n  * Accelerator\
     \ ids are always of the format `acc_NDA3MUI5QzUtOTY4MC00Nz`, with a \"acc_\" prefix\
     \ followed by 22 characters.\n  * Project ids are always of the format `prj_00Iaqxjo71vNL1uLKKo5Kn`,\
@@ -74,9 +74,9 @@ info:
     \ you would add...\n\n    Authorization: Bearer my_api_token\n    \n...to the\
     \ header.\n\n## Command line examples\n\nTo list your current open packet_accelerators\
     \ using the token “my_api_token”:\n\n    curl -H “Authorization: Bearer my_api_token”\
-    \ https://api.subspace.com/v1/accelerators\n    \nAlternately, to get the details\
+    \ https://api.subspace.com/v1/accelerator\n    \nAlternately, to get the details\
     \ of a specific accelerator whose id is 'abcd-ef01-2345':\n\n    curl -H “Authorization:\
-    \ Bearer my_api_token” https://api.subspace.com/v1/accelerators/abcd-ef01-2345\n\
+    \ Bearer my_api_token” https://api.subspace.com/v1/accelerator/abcd-ef01-2345\n\
     \n# API Versioning\n\nSubspace will release new versions when we make backwards-incompatible\
     \ changes to the API. We will give advance notice before releasing a new version\
     \ or retiring an old version.\n\nBackwards compatible changes:\n  * Adding new\
@@ -104,7 +104,7 @@ security:
   - sipteleport:read
   - sipteleport:write
 paths:
-  /v1/accelerators:
+  /v1/accelerator:
     get:
       operationId: AcceleratorService_List
       parameters:
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/v1ListAcceleratorsResponse'
+                $ref: '#/components/schemas/v1ListAcceleratorResponse'
           description: A successful response.
         "400":
           content:
@@ -257,7 +257,7 @@ paths:
       - AcceleratorService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/accelerators/{id}:
+  /v1/accelerator/{id}:
     delete:
       operationId: AcceleratorService_Delete
       parameters:
@@ -474,7 +474,9 @@ paths:
       - AcceleratorService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/sip-teleports:
+  /v1/sip-teleports: {}
+  /v1/sip-teleports/{id}: {}
+  /v1/sipteleport:
     get:
       operationId: SipTeleportService_List
       parameters:
@@ -620,7 +622,7 @@ paths:
       - SipTeleportService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/sip-teleports/{id}:
+  /v1/sipteleport/{id}:
     delete:
       operationId: SipTeleportService_Delete
       parameters:
@@ -824,7 +826,7 @@ paths:
       - SipTeleportService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/accelerators/{accelerator_id}/sessions:
+  /v1/accelerator/{accelerator_id}/session:
     get:
       operationId: SessionService_List
       parameters:
@@ -903,7 +905,7 @@ paths:
       tags:
       - SessionService
       x-accepts: application/json
-  /v1/projects:
+  /v1/project:
     get:
       operationId: ProjectService_List
       parameters:
@@ -957,7 +959,7 @@ paths:
       tags:
       - ProjectService
       x-accepts: application/json
-  /v1/projects/{id}:
+  /v1/project/{id}:
     get:
       operationId: ProjectService_Get
       parameters:
@@ -1011,6 +1013,64 @@ paths:
       tags:
       - ProjectService
       x-accepts: application/json
+  /v1/projects: {}
+  /v1/projects/{id}: {}
+  /v1/globalturn:
+    post:
+      operationId: GlobalTurnService_GetGlobalTurn
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1GlobalTurnResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Access token is missing or invalid
+        "402":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Quota exceeded
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Not authorized
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the resource does not exist.
+        "429":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Too many client requests
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - GlobalTurnService
+      x-accepts: application/json
+  /v1/turn: {}
 components:
   schemas:
     protobufAny:
@@ -1030,7 +1090,6 @@ components:
         destination_ip: destination_ip
         destination_port: 0
         name: name
-        subspace_ip: subspace_ip
         subspace_ipv4: subspace_ipv4
         id: id
       properties:
@@ -1043,12 +1102,8 @@ components:
           type: string
         name:
           type: string
-        protocol:
-          $ref: '#/components/schemas/v1Protocol'
-        subspace_ip:
-          title: deprecated, present in the exposed tunnelservice now
-          type: string
         subspace_ipv4:
+          title: "Protocol\tprotocol\t\t= 5;\nstring\tsubspace_ip\t\t= 8;"
           type: string
         subspace_port:
           format: int64
@@ -1056,28 +1111,26 @@ components:
       type: object
     v1DeleteAcceleratorResponse:
       type: object
-    v1ListAcceleratorsResponse:
+    v1ListAcceleratorResponse:
       example:
         next_page:
           before: before
           limit: 1
-        accelerators:
+        data:
         - subspace_port: 6
           destination_ip: destination_ip
           destination_port: 0
           name: name
-          subspace_ip: subspace_ip
           subspace_ipv4: subspace_ipv4
           id: id
         - subspace_port: 6
           destination_ip: destination_ip
           destination_port: 0
           name: name
-          subspace_ip: subspace_ip
           subspace_ipv4: subspace_ipv4
           id: id
       properties:
-        accelerators:
+        data:
           items:
             $ref: '#/components/schemas/v1Accelerator'
           type: array
@@ -1103,19 +1156,12 @@ components:
         support these parameters in gloo, the OPTIONS endpoints should take
         the Get and List requests from the service.
       type: object
-    v1Protocol:
-      default: udp
-      enum:
-      - udp
-      - tcp
-      - udp_tcp
-      type: string
     v1ListSipTeleportResponse:
       example:
         next_page:
           before: before
           limit: 1
-        sip_teleports:
+        data:
         - date_updated: 2000-01-23T04:56:07.000+00:00
           teleport_entry_points:
           - address: address
@@ -1133,7 +1179,7 @@ components:
           destination: destination
           id: id
       properties:
-        sip_teleports:
+        data:
           items:
             $ref: '#/components/schemas/v1SipTeleportResponse'
           type: array
@@ -1196,7 +1242,7 @@ components:
         next_page:
           before: before
           limit: 1
-        sessions:
+        data:
         - client_port: 0
           subspace_port: 6
           subspace_ip: subspace_ip
@@ -1206,7 +1252,7 @@ components:
           subspace_ip: subspace_ip
           client_ip: client_ip
       properties:
-        sessions:
+        data:
           items:
             $ref: '#/components/schemas/v1Session'
           type: array
@@ -1236,7 +1282,7 @@ components:
         next_page:
           before: before
           limit: 1
-        projects:
+        data:
         - sipteleport_call_quota: 5
           rtpspeed_limit_gb: 5
           accelerator_request_port: true
@@ -1254,7 +1300,7 @@ components:
           sipteleport_quota: 1
           globalturn_limit_gb: 6
       properties:
-        projects:
+        data:
           items:
             $ref: '#/components/schemas/v1Project'
           type: array
@@ -1310,6 +1356,41 @@ components:
           format: int64
           title: rtpspeed_limit_gb limits the
           type: integer
+      type: object
+    v1GlobalTurnRequest:
+      type: object
+    v1GlobalTurnResponse:
+      example:
+        ice_servers:
+        - urls: urls
+          credential: credential
+          url: url
+          username: username
+        - urls: urls
+          credential: credential
+          url: url
+          username: username
+      properties:
+        ice_servers:
+          items:
+            $ref: '#/components/schemas/v1GlobalTurnServer'
+          type: array
+      type: object
+    v1GlobalTurnServer:
+      example:
+        urls: urls
+        credential: credential
+        url: url
+        username: username
+      properties:
+        username:
+          type: string
+        credential:
+          type: string
+        url:
+          type: string
+        urls:
+          type: string
       type: object
     body:
       properties:
@@ -1383,12 +1464,15 @@ components:
           scopes:
             accelerators:read: allows reading details about provisioned PacketAccelerators
             accelerators:write: allows administration of PacketAccelerators
+            console:access: allows access to the console
             sipteleport:read: allows reading details about provisioned SIPTeleport
             sipteleport:write: allows administration of SIPTeleport
             sessions:read: allows reading details about PacketAccelerator sessions
-            sessions:write: allows administration of PacketAccelerator sessions
             projects:read: allows reading details about projects
             projects:write: allows administration of projects
+            globalturn:access: allows administration of GlobalTurn
+            rtpspeed:read: allows reading details about rtpspeed
+            rtpspeed:write: allows administration of rtpspeed
           tokenUrl: https://id.subspace.com/oauth/token
       type: oauth2
 

@@ -11,63 +11,129 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.client.model.V1Accelerator;
+import org.openapitools.client.model.V1NextPage;
 
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
-import okio.Okio;
-import okio.Sink;
+/**
+ * V1ListAcceleratorResponse
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+public class V1ListAcceleratorResponse {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private List<V1Accelerator> data = null;
 
-public class ProgressRequestBody extends RequestBody {
+  public static final String SERIALIZED_NAME_NEXT_PAGE = "next_page";
+  @SerializedName(SERIALIZED_NAME_NEXT_PAGE)
+  private V1NextPage nextPage;
 
-    private final RequestBody requestBody;
 
-    private final ApiCallback callback;
+  public V1ListAcceleratorResponse data(List<V1Accelerator> data) {
+    
+    this.data = data;
+    return this;
+  }
 
-    public ProgressRequestBody(RequestBody requestBody, ApiCallback callback) {
-        this.requestBody = requestBody;
-        this.callback = callback;
+  public V1ListAcceleratorResponse addDataItem(V1Accelerator dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<V1Accelerator>();
     }
+    this.data.add(dataItem);
+    return this;
+  }
 
-    @Override
-    public MediaType contentType() {
-        return requestBody.contentType();
+   /**
+   * Get data
+   * @return data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<V1Accelerator> getData() {
+    return data;
+  }
+
+
+  public void setData(List<V1Accelerator> data) {
+    this.data = data;
+  }
+
+
+  public V1ListAcceleratorResponse nextPage(V1NextPage nextPage) {
+    
+    this.nextPage = nextPage;
+    return this;
+  }
+
+   /**
+   * Get nextPage
+   * @return nextPage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public V1NextPage getNextPage() {
+    return nextPage;
+  }
+
+
+  public void setNextPage(V1NextPage nextPage) {
+    this.nextPage = nextPage;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @Override
-    public long contentLength() throws IOException {
-        return requestBody.contentLength();
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    V1ListAcceleratorResponse v1ListAcceleratorResponse = (V1ListAcceleratorResponse) o;
+    return Objects.equals(this.data, v1ListAcceleratorResponse.data) &&
+        Objects.equals(this.nextPage, v1ListAcceleratorResponse.nextPage);
+  }
 
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
+  @Override
+  public int hashCode() {
+    return Objects.hash(data, nextPage);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class V1ListAcceleratorResponse {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    nextPage: ").append(toIndentedString(nextPage)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
-            }
-        };
-    }
 }
+

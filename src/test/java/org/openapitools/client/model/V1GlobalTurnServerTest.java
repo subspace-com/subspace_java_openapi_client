@@ -11,63 +11,65 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.ForwardingSink;
-import okio.Okio;
-import okio.Sink;
 
-public class ProgressRequestBody extends RequestBody {
+/**
+ * Model tests for V1GlobalTurnServer
+ */
+public class V1GlobalTurnServerTest {
+    private final V1GlobalTurnServer model = new V1GlobalTurnServer();
 
-    private final RequestBody requestBody;
-
-    private final ApiCallback callback;
-
-    public ProgressRequestBody(RequestBody requestBody, ApiCallback callback) {
-        this.requestBody = requestBody;
-        this.callback = callback;
+    /**
+     * Model tests for V1GlobalTurnServer
+     */
+    @Test
+    public void testV1GlobalTurnServer() {
+        // TODO: test V1GlobalTurnServer
     }
 
-    @Override
-    public MediaType contentType() {
-        return requestBody.contentType();
+    /**
+     * Test the property 'username'
+     */
+    @Test
+    public void usernameTest() {
+        // TODO: test username
     }
 
-    @Override
-    public long contentLength() throws IOException {
-        return requestBody.contentLength();
+    /**
+     * Test the property 'credential'
+     */
+    @Test
+    public void credentialTest() {
+        // TODO: test credential
     }
 
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
-        BufferedSink bufferedSink = Okio.buffer(sink(sink));
-        requestBody.writeTo(bufferedSink);
-        bufferedSink.flush();
+    /**
+     * Test the property 'url'
+     */
+    @Test
+    public void urlTest() {
+        // TODO: test url
     }
 
-    private Sink sink(Sink sink) {
-        return new ForwardingSink(sink) {
-
-            long bytesWritten = 0L;
-            long contentLength = 0L;
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                if (contentLength == 0) {
-                    contentLength = contentLength();
-                }
-
-                bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
-            }
-        };
+    /**
+     * Test the property 'urls'
+     */
+    @Test
+    public void urlsTest() {
+        // TODO: test urls
     }
+
 }
