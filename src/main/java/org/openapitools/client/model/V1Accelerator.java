@@ -44,7 +44,7 @@ public class V1Accelerator {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
-
+  
   public static final String SERIALIZED_NAME_SUBSPACE_IPV4 = "subspace_ipv4";
   @SerializedName(SERIALIZED_NAME_SUBSPACE_IPV4)
   private String subspaceIpv4;
