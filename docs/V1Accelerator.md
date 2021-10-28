@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **destinationPort** | **Long** |  |  [optional]
 **id** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
-**protocol** | **V1Protocol** |  |  [optional]
-**subspaceIp** | **String** |  |  [optional]
 **subspaceIpv4** | **String** |  |  [optional]
 **subspacePort** | **Long** |  |  [optional]
 

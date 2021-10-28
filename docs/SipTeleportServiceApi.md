@@ -4,20 +4,18 @@ All URIs are relative to *https://api.subspace.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**sipTeleportServiceCreate**](SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sip-teleports | CreateSipTeleport
-[**sipTeleportServiceDelete**](SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sip-teleports/{id} | DeleteSipTeleport
-[**sipTeleportServiceGet**](SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sip-teleports/{id} | GetSipTeleport
-[**sipTeleportServiceList**](SipTeleportServiceApi.md#sipTeleportServiceList) | **GET** /v1/sip-teleports | ListSipTeleports
-[**sipTeleportServiceUpdate**](SipTeleportServiceApi.md#sipTeleportServiceUpdate) | **PUT** /v1/sip-teleports/{id} | UpdateSipTeleport
+[**sipTeleportServiceCreate**](SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sipteleport | 
+[**sipTeleportServiceDelete**](SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sipteleport/{id} | 
+[**sipTeleportServiceGet**](SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sipteleport/{id} | 
+[**sipTeleportServiceList**](SipTeleportServiceApi.md#sipTeleportServiceList) | **GET** /v1/sipteleport | 
+[**sipTeleportServiceUpdate**](SipTeleportServiceApi.md#sipTeleportServiceUpdate) | **PUT** /v1/sipteleport/{id} | 
 
 
 <a name="sipTeleportServiceCreate"></a>
 # **sipTeleportServiceCreate**
-> V1SipTeleportResponse sipTeleportServiceCreate()
+> V1SipTeleportResponse sipTeleportServiceCreate(v1CreateSipTeleport, idempotencyKey)
 
-CreateSipTeleport
 
-CreateSipTeleport creates a new SIP Teleport
 
 ### Example
 ```java
@@ -39,8 +37,10 @@ public class Example {
     accessCode.setAccessToken("YOUR ACCESS TOKEN");
 
     SipTeleportServiceApi apiInstance = new SipTeleportServiceApi(defaultClient);
+    V1CreateSipTeleport v1CreateSipTeleport = new V1CreateSipTeleport(); // V1CreateSipTeleport | Required parameters to create a new SIPTeleport
+    String idempotencyKey = "idempotencyKey_example"; // String | Value is the returned etag of a get request.  If a retry sends an Idempotency-Key that has been seen before, the existing teleport is returned with the status code of 200
     try {
-      V1SipTeleportResponse result = apiInstance.sipTeleportServiceCreate();
+      V1SipTeleportResponse result = apiInstance.sipTeleportServiceCreate(v1CreateSipTeleport, idempotencyKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SipTeleportServiceApi#sipTeleportServiceCreate");
@@ -54,7 +54,11 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **v1CreateSipTeleport** | [**V1CreateSipTeleport**](V1CreateSipTeleport.md)| Required parameters to create a new SIPTeleport |
+ **idempotencyKey** | **String**| Value is the returned etag of a get request.  If a retry sends an Idempotency-Key that has been seen before, the existing teleport is returned with the status code of 200 | [optional]
 
 ### Return type
 
@@ -66,24 +70,26 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
-**401** | Returned when the user does not have permission to access the resource. |  -  |
+**400** | Bad request |  -  |
+**401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="sipTeleportServiceDelete"></a>
 # **sipTeleportServiceDelete**
 > V1SipTeleportResponse sipTeleportServiceDelete(id)
 
-DeleteSipTeleport
 
-DeleteSipTeleport deletes an existing SIP Teleport, specified by its id
 
 ### Example
 ```java
@@ -143,17 +149,19 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
-**401** | Returned when the user does not have permission to access the resource. |  -  |
+**400** | Bad request |  -  |
+**401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="sipTeleportServiceGet"></a>
 # **sipTeleportServiceGet**
 > V1SipTeleportResponse sipTeleportServiceGet(id)
 
-GetSipTeleport
 
-GetSipTeleport fetches the details of a specific SIP Teleport, specified by its id
 
 ### Example
 ```java
@@ -212,18 +220,20 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**401** | Returned when the user does not have permission to access the resource. |  -  |
+**200** | A successful response. |  * ETag - Include in the headers of a subsequent PUT to avoid concurrency issues <br>  |
+**400** | Bad request |  -  |
+**401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="sipTeleportServiceList"></a>
 # **sipTeleportServiceList**
 > V1ListSipTeleportResponse sipTeleportServiceList(before, limit)
 
-ListSipTeleports
 
-ListSipTeleports lists all SIP Teleports
 
 ### Example
 ```java
@@ -285,17 +295,19 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
-**401** | Returned when the user does not have permission to access the resource. |  -  |
+**400** | Bad request |  -  |
+**401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
 <a name="sipTeleportServiceUpdate"></a>
 # **sipTeleportServiceUpdate**
-> V1SipTeleportResponse sipTeleportServiceUpdate(id)
+> V1SipTeleportResponse sipTeleportServiceUpdate(id, v1UpdateSipTeleport)
 
-UpdateSipTeleport
 
-UpdateSipTeleport updates an existing SIP Teleport, specified by its id
 
 ### Example
 ```java
@@ -318,8 +330,9 @@ public class Example {
 
     SipTeleportServiceApi apiInstance = new SipTeleportServiceApi(defaultClient);
     String id = "id_example"; // String | 
+    V1UpdateSipTeleport v1UpdateSipTeleport = new V1UpdateSipTeleport(); // V1UpdateSipTeleport | Parameters to update an existing SIPTeleport, minimum requirement of one of them defined to update
     try {
-      V1SipTeleportResponse result = apiInstance.sipTeleportServiceUpdate(id);
+      V1SipTeleportResponse result = apiInstance.sipTeleportServiceUpdate(id, v1UpdateSipTeleport);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SipTeleportServiceApi#sipTeleportServiceUpdate");
@@ -337,6 +350,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
+ **v1UpdateSipTeleport** | [**V1UpdateSipTeleport**](V1UpdateSipTeleport.md)| Parameters to update an existing SIPTeleport, minimum requirement of one of them defined to update |
 
 ### Return type
 
@@ -348,14 +362,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A successful response. |  -  |
-**401** | Returned when the user does not have permission to access the resource. |  -  |
+**400** | Bad request |  -  |
+**401** | Access token is missing or invalid |  -  |
+**402** | Quota exceeded |  -  |
+**403** | Not authorized |  -  |
 **404** | Returned when the resource does not exist. |  -  |
+**429** | Too many client requests |  -  |
 **0** | An unexpected error response. |  -  |
 
