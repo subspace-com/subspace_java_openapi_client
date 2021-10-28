@@ -210,4 +210,160 @@ public class SessionServiceApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+    /**
+     * Build call for sessionServiceList2
+     * @param acceleratorId  (required)
+     * @param before  (optional)
+     * @param limit  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A successful response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Access token is missing or invalid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Quota exceeded </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returned when the resource does not exist. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many client requests </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call sessionServiceList2Call(String acceleratorId, String before, Long limit, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1/accelerators/{accelerator_id}/sessions"
+            .replaceAll("\\{" + "accelerator_id" + "\\}", localVarApiClient.escapeString(acceleratorId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (before != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before", before));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "accessCode" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call sessionServiceList2ValidateBeforeCall(String acceleratorId, String before, Long limit, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'acceleratorId' is set
+        if (acceleratorId == null) {
+            throw new ApiException("Missing the required parameter 'acceleratorId' when calling sessionServiceList2(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = sessionServiceList2Call(acceleratorId, before, limit, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * 
+     * @param acceleratorId  (required)
+     * @param before  (optional)
+     * @param limit  (optional)
+     * @return V1ListSessionsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A successful response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Access token is missing or invalid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Quota exceeded </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returned when the resource does not exist. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many client requests </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public V1ListSessionsResponse sessionServiceList2(String acceleratorId, String before, Long limit) throws ApiException {
+        ApiResponse<V1ListSessionsResponse> localVarResp = sessionServiceList2WithHttpInfo(acceleratorId, before, limit);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * 
+     * @param acceleratorId  (required)
+     * @param before  (optional)
+     * @param limit  (optional)
+     * @return ApiResponse&lt;V1ListSessionsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A successful response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Access token is missing or invalid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Quota exceeded </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returned when the resource does not exist. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many client requests </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<V1ListSessionsResponse> sessionServiceList2WithHttpInfo(String acceleratorId, String before, Long limit) throws ApiException {
+        okhttp3.Call localVarCall = sessionServiceList2ValidateBeforeCall(acceleratorId, before, limit, null);
+        Type localVarReturnType = new TypeToken<V1ListSessionsResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param acceleratorId  (required)
+     * @param before  (optional)
+     * @param limit  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> A successful response. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Access token is missing or invalid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Quota exceeded </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returned when the resource does not exist. </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many client requests </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call sessionServiceList2Async(String acceleratorId, String before, Long limit, final ApiCallback<V1ListSessionsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = sessionServiceList2ValidateBeforeCall(acceleratorId, before, limit, _callback);
+        Type localVarReturnType = new TypeToken<V1ListSessionsResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

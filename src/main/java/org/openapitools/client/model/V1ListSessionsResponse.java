@@ -31,7 +31,7 @@ import org.openapitools.client.model.V1Session;
 /**
  * V1ListSessionsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-21T21:00:54.373Z[GMT]")
 public class V1ListSessionsResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

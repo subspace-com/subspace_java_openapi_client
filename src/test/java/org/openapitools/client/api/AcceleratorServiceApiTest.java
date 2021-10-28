@@ -96,7 +96,8 @@ public class AcceleratorServiceApiTest {
     public void acceleratorServiceListTest() throws ApiException {
         String before = null;
         Long limit = null;
-        V1ListAcceleratorResponse response = api.acceleratorServiceList(before, limit);
+        String name = null;
+        V1ListAcceleratorResponse response = api.acceleratorServiceList(before, limit, name);
 
         // TODO: test validations
     }

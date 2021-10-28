@@ -28,7 +28,7 @@ import org.openapitools.client.model.V1TransportType;
 /**
  * V1TeleportAddresses
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-21T21:00:54.373Z[GMT]")
 public class V1TeleportAddresses {
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
