@@ -30,11 +30,15 @@ import org.openapitools.client.model.V1GlobalTurnServer;
 /**
  * V1GlobalTurnResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-21T21:00:54.373Z[GMT]")
 public class V1GlobalTurnResponse {
   public static final String SERIALIZED_NAME_ICE_SERVERS = "ice_servers";
   @SerializedName(SERIALIZED_NAME_ICE_SERVERS)
   private List<V1GlobalTurnServer> iceServers = null;
+
+  public static final String SERIALIZED_NAME_TTL = "ttl";
+  @SerializedName(SERIALIZED_NAME_TTL)
+  private Long ttl;
 
 
   public V1GlobalTurnResponse iceServers(List<V1GlobalTurnServer> iceServers) {
@@ -68,6 +72,29 @@ public class V1GlobalTurnResponse {
   }
 
 
+  public V1GlobalTurnResponse ttl(Long ttl) {
+    
+    this.ttl = ttl;
+    return this;
+  }
+
+   /**
+   * Get ttl
+   * @return ttl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getTtl() {
+    return ttl;
+  }
+
+
+  public void setTtl(Long ttl) {
+    this.ttl = ttl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -77,12 +104,13 @@ public class V1GlobalTurnResponse {
       return false;
     }
     V1GlobalTurnResponse v1GlobalTurnResponse = (V1GlobalTurnResponse) o;
-    return Objects.equals(this.iceServers, v1GlobalTurnResponse.iceServers);
+    return Objects.equals(this.iceServers, v1GlobalTurnResponse.iceServers) &&
+        Objects.equals(this.ttl, v1GlobalTurnResponse.ttl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iceServers);
+    return Objects.hash(iceServers, ttl);
   }
 
   @Override
@@ -90,6 +118,7 @@ public class V1GlobalTurnResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class V1GlobalTurnResponse {\n");
     sb.append("    iceServers: ").append(toIndentedString(iceServers)).append("\n");
+    sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

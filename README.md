@@ -2,7 +2,7 @@
 
 Subspace Product API
 - API version: 1.0
-  - Build date: 2021-09-28T23:33:14.081Z[GMT]
+  - Build date: 2021-10-21T21:00:54.373Z[GMT]
 
 # Introduction
 
@@ -236,6 +236,7 @@ Class | Method | HTTP request | Description
 *ProjectServiceApi* | [**projectServiceList**](docs/ProjectServiceApi.md#projectServiceList) | **GET** /v1/project | 
 *ProjectServiceApi* | [**projectServiceUpdate**](docs/ProjectServiceApi.md#projectServiceUpdate) | **PUT** /v1/project/{id} | 
 *SessionServiceApi* | [**sessionServiceList**](docs/SessionServiceApi.md#sessionServiceList) | **GET** /v1/accelerator/{accelerator_id}/session | 
+*SessionServiceApi* | [**sessionServiceList2**](docs/SessionServiceApi.md#sessionServiceList2) | **GET** /v1/accelerators/{accelerator_id}/sessions | 
 *SipTeleportServiceApi* | [**sipTeleportServiceCreate**](docs/SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sipteleport | 
 *SipTeleportServiceApi* | [**sipTeleportServiceDelete**](docs/SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sipteleport/{id} | 
 *SipTeleportServiceApi* | [**sipTeleportServiceGet**](docs/SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sipteleport/{id} | 

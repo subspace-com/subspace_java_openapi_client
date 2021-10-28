@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * V1CreateSipTeleport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-28T23:33:14.081Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-21T21:00:54.373Z[GMT]")
 public class V1CreateSipTeleport {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -36,6 +36,10 @@ public class V1CreateSipTeleport {
   public static final String SERIALIZED_NAME_DESTINATION = "destination";
   @SerializedName(SERIALIZED_NAME_DESTINATION)
   private String destination;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private String status;
 
 
   public V1CreateSipTeleport name(String name) {
@@ -82,6 +86,29 @@ public class V1CreateSipTeleport {
   }
 
 
+  public V1CreateSipTeleport status(String status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Enum: [ ENABLED, DISABLED ]
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Enum: [ ENABLED, DISABLED ]")
+
+  public String getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -92,12 +119,13 @@ public class V1CreateSipTeleport {
     }
     V1CreateSipTeleport v1CreateSipTeleport = (V1CreateSipTeleport) o;
     return Objects.equals(this.name, v1CreateSipTeleport.name) &&
-        Objects.equals(this.destination, v1CreateSipTeleport.destination);
+        Objects.equals(this.destination, v1CreateSipTeleport.destination) &&
+        Objects.equals(this.status, v1CreateSipTeleport.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, destination);
+    return Objects.hash(name, destination, status);
   }
 
   @Override
@@ -106,6 +134,7 @@ public class V1CreateSipTeleport {
     sb.append("class V1CreateSipTeleport {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

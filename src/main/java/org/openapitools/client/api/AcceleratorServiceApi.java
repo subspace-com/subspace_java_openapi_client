@@ -492,6 +492,7 @@ public class AcceleratorServiceApi {
      * Build call for acceleratorServiceList
      * @param before  (optional)
      * @param limit  (optional)
+     * @param name  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -508,7 +509,7 @@ public class AcceleratorServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call acceleratorServiceListCall(String before, Long limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call acceleratorServiceListCall(String before, Long limit, String name, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -526,6 +527,10 @@ public class AcceleratorServiceApi {
 
         if (limit != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (name != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("name", name));
         }
 
         final String[] localVarAccepts = {
@@ -547,10 +552,10 @@ public class AcceleratorServiceApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call acceleratorServiceListValidateBeforeCall(String before, Long limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call acceleratorServiceListValidateBeforeCall(String before, Long limit, String name, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = acceleratorServiceListCall(before, limit, _callback);
+        okhttp3.Call localVarCall = acceleratorServiceListCall(before, limit, name, _callback);
         return localVarCall;
 
     }
@@ -560,6 +565,7 @@ public class AcceleratorServiceApi {
      * 
      * @param before  (optional)
      * @param limit  (optional)
+     * @param name  (optional)
      * @return V1ListAcceleratorResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -575,8 +581,8 @@ public class AcceleratorServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public V1ListAcceleratorResponse acceleratorServiceList(String before, Long limit) throws ApiException {
-        ApiResponse<V1ListAcceleratorResponse> localVarResp = acceleratorServiceListWithHttpInfo(before, limit);
+    public V1ListAcceleratorResponse acceleratorServiceList(String before, Long limit, String name) throws ApiException {
+        ApiResponse<V1ListAcceleratorResponse> localVarResp = acceleratorServiceListWithHttpInfo(before, limit, name);
         return localVarResp.getData();
     }
 
@@ -585,6 +591,7 @@ public class AcceleratorServiceApi {
      * 
      * @param before  (optional)
      * @param limit  (optional)
+     * @param name  (optional)
      * @return ApiResponse&lt;V1ListAcceleratorResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -600,8 +607,8 @@ public class AcceleratorServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<V1ListAcceleratorResponse> acceleratorServiceListWithHttpInfo(String before, Long limit) throws ApiException {
-        okhttp3.Call localVarCall = acceleratorServiceListValidateBeforeCall(before, limit, null);
+    public ApiResponse<V1ListAcceleratorResponse> acceleratorServiceListWithHttpInfo(String before, Long limit, String name) throws ApiException {
+        okhttp3.Call localVarCall = acceleratorServiceListValidateBeforeCall(before, limit, name, null);
         Type localVarReturnType = new TypeToken<V1ListAcceleratorResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -611,6 +618,7 @@ public class AcceleratorServiceApi {
      * 
      * @param before  (optional)
      * @param limit  (optional)
+     * @param name  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -627,9 +635,9 @@ public class AcceleratorServiceApi {
         <tr><td> 0 </td><td> An unexpected error response. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call acceleratorServiceListAsync(String before, Long limit, final ApiCallback<V1ListAcceleratorResponse> _callback) throws ApiException {
+    public okhttp3.Call acceleratorServiceListAsync(String before, Long limit, String name, final ApiCallback<V1ListAcceleratorResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = acceleratorServiceListValidateBeforeCall(before, limit, _callback);
+        okhttp3.Call localVarCall = acceleratorServiceListValidateBeforeCall(before, limit, name, _callback);
         Type localVarReturnType = new TypeToken<V1ListAcceleratorResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

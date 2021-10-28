@@ -56,4 +56,12 @@ public class V1CreateSipTeleportTest {
         // TODO: test destination
     }
 
+    /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
+    }
+
 }

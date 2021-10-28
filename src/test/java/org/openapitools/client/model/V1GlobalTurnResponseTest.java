@@ -51,4 +51,12 @@ public class V1GlobalTurnResponseTest {
         // TODO: test iceServers
     }
 
+    /**
+     * Test the property 'ttl'
+     */
+    @Test
+    public void ttlTest() {
+        // TODO: test ttl
+    }
+
 }

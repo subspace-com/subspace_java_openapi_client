@@ -50,4 +50,22 @@ public class SessionServiceApiTest {
         // TODO: test validations
     }
     
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void sessionServiceList2Test() throws ApiException {
+        String acceleratorId = null;
+        String before = null;
+        Long limit = null;
+        V1ListSessionsResponse response = api.sessionServiceList2(acceleratorId, before, limit);
+
+        // TODO: test validations
+    }
+    
 }

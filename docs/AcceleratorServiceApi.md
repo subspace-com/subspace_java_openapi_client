@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 <a name="acceleratorServiceList"></a>
 # **acceleratorServiceList**
-> V1ListAcceleratorResponse acceleratorServiceList(before, limit)
+> V1ListAcceleratorResponse acceleratorServiceList(before, limit, name)
 
 
 
@@ -258,8 +258,9 @@ public class Example {
     AcceleratorServiceApi apiInstance = new AcceleratorServiceApi(defaultClient);
     String before = "before_example"; // String | 
     Long limit = 56L; // Long | 
+    String name = "name_example"; // String | 
     try {
-      V1ListAcceleratorResponse result = apiInstance.acceleratorServiceList(before, limit);
+      V1ListAcceleratorResponse result = apiInstance.acceleratorServiceList(before, limit, name);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AcceleratorServiceApi#acceleratorServiceList");
@@ -278,6 +279,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **before** | **String**|  | [optional]
  **limit** | **Long**|  | [optional]
+ **name** | **String**|  | [optional]
 
 ### Return type
 
