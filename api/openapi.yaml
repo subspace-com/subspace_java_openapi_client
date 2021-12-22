@@ -66,17 +66,15 @@ info:
     \  * The API Endpoint and any parameters: `accelerator/acc_NDA3MUI5QzUtOTY4MC00Nz`\
     \ where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID\n  * Accelerator\
     \ ids are always of the format `acc_NDA3MUI5QzUtOTY4MC00Nz`, with a \"acc_\" prefix\
-    \ followed by 22 characters.\n  * Project ids are always of the format `prj_00Iaqxjo71vNL1uLKKo5Kn`,\
-    \ with a \"prj_\" prefix followed by 22 characters.\n  * Token header: All REST\
-    \ requests require a valid JWT Bearer token which should be added as an “Authorization”\
-    \ header to the request:\n      \n      `Authorization: Bearer YOUR_TOKEN_HERE`\n\
-    \  \n## Authorization header example\n\nIf your API token was “my_api_token”,\
-    \ you would add...\n\n    Authorization: Bearer my_api_token\n    \n...to the\
-    \ header.\n\n## Command line examples\n\nTo list your current open packet_accelerators\
-    \ using the token “my_api_token”:\n\n    curl -H “Authorization: Bearer my_api_token”\
-    \ https://api.subspace.com/v1/accelerator\n    \nAlternately, to get the details\
-    \ of a specific accelerator whose id is 'abcd-ef01-2345':\n\n    curl -H “Authorization:\
-    \ Bearer my_api_token” https://api.subspace.com/v1/accelerator/abcd-ef01-2345\n\
+    \ followed by 22 characters.\n  * Token header: All REST requests require a valid\
+    \ JWT Bearer token which should be added as an “Authorization” header to the request:\n\
+    \      \n      `Authorization: Bearer YOUR_TOKEN_HERE`\n  \n## Authorization header\
+    \ example\n\nIf your API token was “my_api_token”, you would add...\n\n    Authorization:\
+    \ Bearer my_api_token\n    \n...to the header.\n\n## Command line examples\n\n\
+    To list your current open packet_accelerators using the token “my_api_token”:\n\
+    \n    curl -H “Authorization: Bearer my_api_token” https://api.subspace.com/v1/accelerator\n\
+    \    \nAlternately, to get the details of a specific accelerator whose id is 'abcd-ef01-2345':\n\
+    \n    curl -H “Authorization: Bearer my_api_token” https://api.subspace.com/v1/accelerator/abcd-ef01-2345\n\
     \n# API Versioning\n\nSubspace will release new versions when we make backwards-incompatible\
     \ changes to the API. We will give advance notice before releasing a new version\
     \ or retiring an old version.\n\nBackwards compatible changes:\n  * Adding new\
@@ -202,8 +200,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/body'
-        description: Required parameters to create a new PacketAccelerator.  NOTE-
-          only subspace_port is optional
+        description: Required parameters to create a new PacketAccelerator.
         required: true
       responses:
         "200":
@@ -419,8 +416,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/body_1'
-        description: Parameters to update an existing PacketAccelerator, minimum requirement
-          of one of them defined to update
+        description: Parameters to update an existing PacketAccelerator
         required: true
       responses:
         "200":
@@ -835,274 +831,6 @@ paths:
       - SipTeleportService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/accelerator/{accelerator_id}/session:
-    get:
-      operationId: SessionService_List
-      parameters:
-      - explode: false
-        in: path
-        name: accelerator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: before
-        required: false
-        schema:
-          format: uint64
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1ListSessionsResponse'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Access token is missing or invalid
-        "402":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Quota exceeded
-        "403":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Not authorized
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Returned when the resource does not exist.
-        "429":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Too many client requests
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - SessionService
-      x-accepts: application/json
-  /v1/accelerators/{accelerator_id}/sessions:
-    get:
-      operationId: SessionService_List2
-      parameters:
-      - explode: false
-        in: path
-        name: accelerator_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: before
-        required: false
-        schema:
-          format: uint64
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1ListSessionsResponse'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Access token is missing or invalid
-        "402":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Quota exceeded
-        "403":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Not authorized
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Returned when the resource does not exist.
-        "429":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Too many client requests
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - SessionService
-      x-accepts: application/json
-  /v1/project:
-    get:
-      operationId: ProjectService_List
-      parameters:
-      - explode: true
-        in: query
-        name: before
-        required: false
-        schema:
-          format: uint64
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1ListProjectsResponse'
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - ProjectService
-      x-accepts: application/json
-    post:
-      operationId: ProjectService_Create
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1Project'
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - ProjectService
-      x-accepts: application/json
-  /v1/project/{id}:
-    get:
-      operationId: ProjectService_Get
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1Project'
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - ProjectService
-      x-accepts: application/json
-    put:
-      operationId: ProjectService_Update
-      parameters:
-      - description: id is the project identity
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/v1Project'
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      tags:
-      - ProjectService
-      x-accepts: application/json
-  /v1/projects: {}
-  /v1/projects/{id}: {}
   /v1/globalturn:
     post:
       operationId: GlobalTurnService_GetGlobalTurn
@@ -1181,15 +909,15 @@ components:
         subspace_ipv4: subspace_ipv4
         id: id
       properties:
+        id:
+          type: string
+        name:
+          type: string
         destination_ip:
           type: string
         destination_port:
           format: int64
           type: integer
-        id:
-          type: string
-        name:
-          type: string
         subspace_ipv4:
           title: "Protocol\tprotocol\t\t= 5;\nstring\tsubspace_ip\t\t= 8;"
           type: string
@@ -1305,8 +1033,9 @@ components:
           type: string
       type: object
     v1SipTeleportStatus:
-      default: DISABLED
+      default: UNKNOWN
       enum:
+      - UNKNOWN
       - DISABLED
       - ENABLED
       type: string
@@ -1325,126 +1054,6 @@ components:
       - UDP_TCP
       - TLS
       type: string
-    v1ListSessionsResponse:
-      example:
-        next_page:
-          before: before
-          limit: 1
-        data:
-        - client_port: 0
-          subspace_port: 6
-          subspace_ip: subspace_ip
-          client_ip: client_ip
-        - client_port: 0
-          subspace_port: 6
-          subspace_ip: subspace_ip
-          client_ip: client_ip
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v1Session'
-          type: array
-        next_page:
-          $ref: '#/components/schemas/v1NextPage'
-      type: object
-    v1Session:
-      example:
-        client_port: 0
-        subspace_port: 6
-        subspace_ip: subspace_ip
-        client_ip: client_ip
-      properties:
-        client_ip:
-          type: string
-        client_port:
-          format: int64
-          type: integer
-        subspace_ip:
-          type: string
-        subspace_port:
-          format: int64
-          type: integer
-      type: object
-    v1ListProjectsResponse:
-      example:
-        next_page:
-          before: before
-          limit: 1
-        data:
-        - sipteleport_call_quota: 5
-          rtpspeed_limit_gb: 5
-          accelerator_request_port: true
-          name: name
-          id: id
-          accelerator_quota: 0
-          sipteleport_quota: 1
-          globalturn_limit_gb: 6
-        - sipteleport_call_quota: 5
-          rtpspeed_limit_gb: 5
-          accelerator_request_port: true
-          name: name
-          id: id
-          accelerator_quota: 0
-          sipteleport_quota: 1
-          globalturn_limit_gb: 6
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/v1Project'
-          type: array
-        next_page:
-          $ref: '#/components/schemas/v1NextPage'
-      type: object
-    v1Project:
-      example:
-        sipteleport_call_quota: 5
-        rtpspeed_limit_gb: 5
-        accelerator_request_port: true
-        name: name
-        id: id
-        accelerator_quota: 0
-        sipteleport_quota: 1
-        globalturn_limit_gb: 6
-      properties:
-        id:
-          title: id is the project identity
-          type: string
-        name:
-          title: id is the project identity
-          type: string
-        accelerator_quota:
-          format: int64
-          title: |-
-            accelerator_quota limits the number of permitted simultaneous
-            Packet Accelerators
-          type: integer
-        accelerator_request_port:
-          title: accelerator_request_port permits accelerator POST bodies to specify
-            the `subspace_port`
-          type: boolean
-        globalturn_limit_gb:
-          format: int64
-          title: |-
-            globalturn_limit_gb limits the data transferred via TURN over the
-            lifetime of the project
-          type: integer
-        sipteleport_quota:
-          format: int64
-          title: |-
-            sipteleport_quota limits the number of permitted simultaneous
-            SIP Teleports
-          type: integer
-        sipteleport_call_quota:
-          format: int64
-          title: |-
-            sipteleport_call_quota limits the number of permitted
-            simultaneous SIP calls for all SIP Teleports
-          type: integer
-        rtpspeed_limit_gb:
-          format: int64
-          title: rtpspeed_limit_gb limits the
-          type: integer
-      type: object
     v1GlobalTurnRequest:
       type: object
     v1GlobalTurnResponse:
@@ -1486,9 +1095,6 @@ components:
       type: object
     body:
       properties:
-        protocol:
-          description: udp or tcp
-          type: string
         name:
           description: Name of PacketAccelerator
           type: string
@@ -1499,28 +1105,18 @@ components:
           description: Destination port, e.g. 443
           type: integer
         subspace_port:
-          description: Desired Subspace-assigned ingress port, optional
+          description: Optional per plan, Specify the Subspace-returned ingress port
           type: integer
       required:
       - destination_ip
       - destination_port
       - name
-      - protocol
       type: object
     body_1:
       properties:
-        protocol:
-          description: udp or tcp
-          type: string
         name:
           description: Name of PacketAccelerator
           type: string
-        destination_ip:
-          description: Destination IP, e.g. 1.2.3.4
-          type: string
-        destination_port:
-          description: Destination port, e.g. 443
-          type: integer
       type: object
     v1CreateSipTeleport:
       properties:
@@ -1562,9 +1158,7 @@ components:
             console:access: allows access to the console
             sipteleport:read: allows reading details about provisioned SIPTeleport
             sipteleport:write: allows administration of SIPTeleport
-            sessions:read: allows reading details about PacketAccelerator sessions
             projects:read: allows reading details about projects
-            projects:write: allows administration of projects
             globalturn:access: allows administration of GlobalTurn
             rtpspeed:read: allows reading details about rtpspeed
             rtpspeed:write: allows administration of rtpspeed

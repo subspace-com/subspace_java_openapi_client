@@ -24,7 +24,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
+import org.openapitools.client.models.*;
 import org.openapitools.client.api.AcceleratorServiceApi;
 
 public class Example {
@@ -37,7 +37,7 @@ public class Example {
     accessCode.setAccessToken("YOUR ACCESS TOKEN");
 
     AcceleratorServiceApi apiInstance = new AcceleratorServiceApi(defaultClient);
-    Body body = new Body(); // Body | Required parameters to create a new PacketAccelerator.  NOTE- only subspace_port is optional
+    Body body = new Body(); // Body | Required parameters to create a new PacketAccelerator.
     String idempotencyKey = "idempotencyKey_example"; // String | Value is the returned etag of a get request.  If a retry sends an Idempotency-Key that has been seen before, the existing accelerator is returned with the status code of 200
     try {
       V1Accelerator result = apiInstance.acceleratorServiceCreate(body, idempotencyKey);
@@ -57,7 +57,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)| Required parameters to create a new PacketAccelerator.  NOTE- only subspace_port is optional |
+ **body** | [**Body**](Body.md)| Required parameters to create a new PacketAccelerator. |
  **idempotencyKey** | **String**| Value is the returned etag of a get request.  If a retry sends an Idempotency-Key that has been seen before, the existing accelerator is returned with the status code of 200 | [optional]
 
 ### Return type
@@ -99,7 +99,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
+import org.openapitools.client.models.*;
 import org.openapitools.client.api.AcceleratorServiceApi;
 
 public class Example {
@@ -171,7 +171,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
+import org.openapitools.client.models.*;
 import org.openapitools.client.api.AcceleratorServiceApi;
 
 public class Example {
@@ -243,7 +243,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
+import org.openapitools.client.models.*;
 import org.openapitools.client.api.AcceleratorServiceApi;
 
 public class Example {
@@ -319,7 +319,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
+import org.openapitools.client.models.*;
 import org.openapitools.client.api.AcceleratorServiceApi;
 
 public class Example {
@@ -333,7 +333,7 @@ public class Example {
 
     AcceleratorServiceApi apiInstance = new AcceleratorServiceApi(defaultClient);
     String id = "id_example"; // String | 
-    Body1 body1 = new Body1(); // Body1 | Parameters to update an existing PacketAccelerator, minimum requirement of one of them defined to update
+    Body1 body1 = new Body1(); // Body1 | Parameters to update an existing PacketAccelerator
     Integer ifMatch = 56; // Integer | 
     try {
       V1Accelerator result = apiInstance.acceleratorServiceUpdate(id, body1, ifMatch);
@@ -354,7 +354,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **body1** | [**Body1**](Body1.md)| Parameters to update an existing PacketAccelerator, minimum requirement of one of them defined to update |
+ **body1** | [**Body1**](Body1.md)| Parameters to update an existing PacketAccelerator |
  **ifMatch** | **Integer**|  | [optional]
 
 ### Return type

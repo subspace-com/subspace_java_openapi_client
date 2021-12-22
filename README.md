@@ -2,7 +2,7 @@
 
 Subspace Product API
 - API version: 1.0
-  - Build date: 2021-10-21T21:00:54.373Z[GMT]
+  - Build date: 2021-12-16T21:50:26.375Z[GMT]
 
 # Introduction
 
@@ -74,7 +74,6 @@ REST calls are made up of:
   * Version: Example: `v1`
   * The API Endpoint and any parameters: `accelerator/acc_NDA3MUI5QzUtOTY4MC00Nz` where `acc_NDA3MUI5QzUtOTY4MC00Nz` is a valid accelerator ID
   * Accelerator ids are always of the format `acc_NDA3MUI5QzUtOTY4MC00Nz`, with a \"acc_\" prefix followed by 22 characters.
-  * Project ids are always of the format `prj_00Iaqxjo71vNL1uLKKo5Kn`, with a \"prj_\" prefix followed by 22 characters.
   * Token header: All REST requests require a valid JWT Bearer token which should be added as an “Authorization” header to the request:
       
       `Authorization: Bearer YOUR_TOKEN_HERE`
@@ -202,7 +201,7 @@ public class Example {
     accessCode.setAccessToken("YOUR ACCESS TOKEN");
 
     AcceleratorServiceApi apiInstance = new AcceleratorServiceApi(defaultClient);
-    Body body = new Body(); // Body | Required parameters to create a new PacketAccelerator.  NOTE- only subspace_port is optional
+    Body body = new Body(); // Body | Required parameters to create a new PacketAccelerator.
     String idempotencyKey = "idempotencyKey_example"; // String | Value is the returned etag of a get request.  If a retry sends an Idempotency-Key that has been seen before, the existing accelerator is returned with the status code of 200
     try {
       V1Accelerator result = apiInstance.acceleratorServiceCreate(body, idempotencyKey);
@@ -231,12 +230,6 @@ Class | Method | HTTP request | Description
 *AcceleratorServiceApi* | [**acceleratorServiceList**](docs/AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerator | 
 *AcceleratorServiceApi* | [**acceleratorServiceUpdate**](docs/AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerator/{id} | 
 *GlobalTurnServiceApi* | [**globalTurnServiceGetGlobalTurn**](docs/GlobalTurnServiceApi.md#globalTurnServiceGetGlobalTurn) | **POST** /v1/globalturn | 
-*ProjectServiceApi* | [**projectServiceCreate**](docs/ProjectServiceApi.md#projectServiceCreate) | **POST** /v1/project | 
-*ProjectServiceApi* | [**projectServiceGet**](docs/ProjectServiceApi.md#projectServiceGet) | **GET** /v1/project/{id} | 
-*ProjectServiceApi* | [**projectServiceList**](docs/ProjectServiceApi.md#projectServiceList) | **GET** /v1/project | 
-*ProjectServiceApi* | [**projectServiceUpdate**](docs/ProjectServiceApi.md#projectServiceUpdate) | **PUT** /v1/project/{id} | 
-*SessionServiceApi* | [**sessionServiceList**](docs/SessionServiceApi.md#sessionServiceList) | **GET** /v1/accelerator/{accelerator_id}/session | 
-*SessionServiceApi* | [**sessionServiceList2**](docs/SessionServiceApi.md#sessionServiceList2) | **GET** /v1/accelerators/{accelerator_id}/sessions | 
 *SipTeleportServiceApi* | [**sipTeleportServiceCreate**](docs/SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sipteleport | 
 *SipTeleportServiceApi* | [**sipTeleportServiceDelete**](docs/SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sipteleport/{id} | 
 *SipTeleportServiceApi* | [**sipTeleportServiceGet**](docs/SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sipteleport/{id} | 
@@ -254,12 +247,8 @@ Class | Method | HTTP request | Description
  - [V1GlobalTurnResponse](docs/V1GlobalTurnResponse.md)
  - [V1GlobalTurnServer](docs/V1GlobalTurnServer.md)
  - [V1ListAcceleratorResponse](docs/V1ListAcceleratorResponse.md)
- - [V1ListProjectsResponse](docs/V1ListProjectsResponse.md)
- - [V1ListSessionsResponse](docs/V1ListSessionsResponse.md)
  - [V1ListSipTeleportResponse](docs/V1ListSipTeleportResponse.md)
  - [V1NextPage](docs/V1NextPage.md)
- - [V1Project](docs/V1Project.md)
- - [V1Session](docs/V1Session.md)
  - [V1SipTeleportResponse](docs/V1SipTeleportResponse.md)
  - [V1SipTeleportStatus](docs/V1SipTeleportStatus.md)
  - [V1TeleportAddresses](docs/V1TeleportAddresses.md)
@@ -281,9 +270,7 @@ Authentication schemes defined for the API:
   - console:access: allows access to the console
   - sipteleport:read: allows reading details about provisioned SIPTeleport
   - sipteleport:write: allows administration of SIPTeleport
-  - sessions:read: allows reading details about PacketAccelerator sessions
   - projects:read: allows reading details about projects
-  - projects:write: allows administration of projects
   - globalturn:access: allows administration of GlobalTurn
   - rtpspeed:read: allows reading details about rtpspeed
   - rtpspeed:write: allows administration of rtpspeed

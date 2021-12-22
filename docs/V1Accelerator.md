@@ -7,10 +7,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**destinationIp** | **String** |  |  [optional]
-**destinationPort** | **Long** |  |  [optional]
 **id** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
+**destinationIp** | **String** |  |  [optional]
+**destinationPort** | **Long** |  |  [optional]
 **subspaceIpv4** | **String** |  |  [optional]
 **subspacePort** | **Long** |  |  [optional]
 
