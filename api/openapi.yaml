@@ -27,35 +27,34 @@ info:
     \ API Tokens\n\n  * **JWT tokens have a expiration time of 24 hours.**  Once expired,\
     \ you will have to use your Subspace private API and public token to request a\
     \ new one.\n  * The Subspace private token can be rotated from within the Subspace\
-    \ console.  Rotation may take up to 10 minutes for all systems to update state\
-    \ to invalidate the older token and enable the new one.\n  * **Keep your secret\
-    \ token safe.** Your secret token can make any API call on behalf of your account,\
-    \ including changes that may impact billing such as enabling pay-as-you-go charges.\
-    \ Do not store your secret token in your version control system. Do not use your\
-    \ secret token outside your web server, such as a browser, mobile app, or distributed\
-    \ file.\n  * **You may use the Subspace console to acquire an API token.**\n \
-    \ * **You may use the Subspace console to disable pay-as-you-go.** This may prevent\
-    \ unexpected charges due to unauthorized or abnormal usage.\n  * **Do not embed\
-    \ API keys directly in code.** Instead of directly embedding API keys in your\
-    \ application’s code, put them in environment variables, or within include files\
-    \ that are stored separately from the bulk of your code—outside the source repository\
-    \ of your application. Then, if you share your code, the API keys will not be\
-    \ included in the shared files.\n  * **Do not store API tokens inside your application’\
-    s source control.** If you store API tokens in files, keep the files outside your\
-    \ application’s source control system. This is particularly important if you use\
-    \ a public source code management system such as GitHub.\n  * **Limit access with\
-    \ restricted tokens.** The Subspace console will allow you to specify the IP addresses\
-    \ or referrer URLs associated with each token, reducing the impact of a compromised\
-    \ API token.\n  * **Use independent API tokens for different apps.** This limits\
-    \ the scope of each token. If an API token is compromised, you can rotate the\
-    \ impacted token without impacting other API tokens.\n\n# Error Codes\n\nSubspace\
-    \ uses HTTP response codes to indicate the success or failure of an API request.\
-    \ \n\nGeneral HTML status codes:\n  * 2xx Success. \n  * 4xx Errors based on information\
-    \ provided in the request.\n  * 5xx Errors on Subspace servers.\n  \n# Security\n\
-    \nWe provide a valid, signed certificate for our API methods. Be sure your connection\
-    \ library supports HTTPS with the SNI extension.\n\n# REST How-To\n\nMaking your\
-    \ first REST API call is easy and can be done from your browser.  You will need:\n\
-    \  * Your **secret** token and public client token, both found in the Console.\n\
+    \ console.\n  * **Keep your secret token safe.** Your secret token can make any\
+    \ API call on behalf of your account, including changes that may impact billing\
+    \ such as enabling pay-as-you-go charges. Do not store your secret token in your\
+    \ version control system. Do not use your secret token outside your web server,\
+    \ such as a browser, mobile app, or distributed file.\n  * **You may use the Subspace\
+    \ console to acquire an API token.**\n  * **You may use the Subspace console to\
+    \ disable pay-as-you-go.** This may prevent unexpected charges due to unauthorized\
+    \ or abnormal usage.\n  * **Do not embed API keys directly in code.** Instead\
+    \ of directly embedding API keys in your application’s code, put them in environment\
+    \ variables, or within include files that are stored separately from the bulk\
+    \ of your code—outside the source repository of your application. Then, if you\
+    \ share your code, the API keys will not be included in the shared files.\n  *\
+    \ **Do not store API tokens inside your application’s source control.** If you\
+    \ store API tokens in files, keep the files outside your application’s source\
+    \ control system. This is particularly important if you use a public source code\
+    \ management system such as GitHub.\n  * **Limit access with restricted tokens.**\
+    \ The Subspace console will allow you to specify the IP addresses or referrer\
+    \ URLs associated with each token, reducing the impact of a compromised API token.\n\
+    \  * **Use independent API tokens for different apps.** This limits the scope\
+    \ of each token. If an API token is compromised, you can rotate the impacted token\
+    \ without impacting other API tokens.\n\n# Error Codes\n\nSubspace uses HTTP response\
+    \ codes to indicate the success or failure of an API request. \n\nGeneral HTML\
+    \ status codes:\n  * 2xx Success. \n  * 4xx Errors based on information provided\
+    \ in the request.\n  * 5xx Errors on Subspace servers.\n  \n# Security\n\nWe provide\
+    \ a valid, signed certificate for our API methods. Be sure your connection library\
+    \ supports HTTPS with the SNI extension.\n\n# REST How-To\n\nMaking your first\
+    \ REST API call is easy and can be done from your browser.  You will need:\n \
+    \ * Your **secret** token and public client token, both found in the Console.\n\
     \  * The URL for the type of data you would like to request.\n\nFirst, acquire\
     \ a JWT Bearer Token.  Command line example:\n    \n    curl --request POST \\\
     \n         --url \"https://id.subspace.com/oauth/token\" \\\n         --header\
@@ -184,9 +183,9 @@ paths:
     post:
       operationId: AcceleratorService_Create
       parameters:
-      - description: Value is the returned etag of a get request.  If a retry sends
-          an Idempotency-Key that has been seen before, the existing accelerator is
-          returned with the status code of 200
+      - description: "Value is the returned etag of a get request.  If a retry sends\
+          \ an Idempotency-Key that has been seen before, the existing accelerator\
+          \ is returned with the status code of 200"
         explode: false
         in: header
         name: Idempotency-Key
@@ -556,9 +555,9 @@ paths:
     post:
       operationId: SipTeleportService_Create
       parameters:
-      - description: Value is the returned etag of a get request.  If a retry sends
-          an Idempotency-Key that has been seen before, the existing teleport is returned
-          with the status code of 200
+      - description: "Value is the returned etag of a get request.  If a retry sends\
+          \ an Idempotency-Key that has been seen before, the existing teleport is\
+          \ returned with the status code of 200"
         explode: false
         in: header
         name: Idempotency-Key
@@ -775,8 +774,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/v1UpdateSipTeleport'
-        description: Parameters to update an existing SIPTeleport, minimum requirement
-          of one of them defined to update
+        description: "Parameters to update an existing SIPTeleport, minimum requirement\
+          \ of one of them defined to update"
         required: true
       responses:
         "200":
@@ -831,15 +830,15 @@ paths:
       - SipTeleportService
       x-contentType: application/json
       x-accepts: application/json
-  /v1/globalturn:
+  /v1/webrtc-cdn:
     post:
-      operationId: GlobalTurnService_GetGlobalTurn
+      operationId: WebRtcCdnService_GetWebRtcCdn
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/v1GlobalTurnResponse'
+                $ref: '#/components/schemas/v1WebRtcCdnResponse'
           description: A successful response.
         "400":
           content:
@@ -884,9 +883,8 @@ paths:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
       tags:
-      - GlobalTurnService
+      - WebRtcCdnService
       x-accepts: application/json
-  /v1/turn: {}
 components:
   schemas:
     protobufAny:
@@ -895,7 +893,7 @@ components:
           type: string
         value:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       type: object
     rpcStatus:
@@ -909,15 +907,15 @@ components:
         subspace_ipv4: subspace_ipv4
         id: id
       properties:
-        id:
-          type: string
-        name:
-          type: string
         destination_ip:
           type: string
         destination_port:
           format: int64
           type: integer
+        id:
+          type: string
+        name:
+          type: string
         subspace_ipv4:
           title: "Protocol\tprotocol\t\t= 5;\nstring\tsubspace_ip\t\t= 8;"
           type: string
@@ -1054,41 +1052,36 @@ components:
       - UDP_TCP
       - TLS
       type: string
-    v1GlobalTurnRequest:
+    v1WebRtcCdnRequest:
       type: object
-    v1GlobalTurnResponse:
+    v1WebRtcCdnResponse:
       example:
-        ice_servers:
+        iceServers:
         - urls: urls
           credential: credential
-          url: url
           username: username
         - urls: urls
           credential: credential
-          url: url
           username: username
         ttl: 0
       properties:
-        ice_servers:
+        iceServers:
           items:
-            $ref: '#/components/schemas/v1GlobalTurnServer'
+            $ref: '#/components/schemas/v1WebRtcCdnServer'
           type: array
         ttl:
           format: int64
           type: integer
       type: object
-    v1GlobalTurnServer:
+    v1WebRtcCdnServer:
       example:
         urls: urls
         credential: credential
-        url: url
         username: username
       properties:
         username:
           type: string
         credential:
-          type: string
-        url:
           type: string
         urls:
           type: string
@@ -1099,13 +1092,13 @@ components:
           description: Name of PacketAccelerator
           type: string
         destination_ip:
-          description: Destination IP, e.g. 1.2.3.4
+          description: "Destination IP, e.g. 1.2.3.4"
           type: string
         destination_port:
-          description: Destination port, e.g. 443
+          description: "Destination port, e.g. 443"
           type: integer
         subspace_port:
-          description: Optional per plan, Specify the Subspace-returned ingress port
+          description: "Optional per plan, Specify the Subspace-returned ingress port"
           type: integer
       required:
       - destination_ip
@@ -1127,7 +1120,7 @@ components:
           description: Destination of SIPTeleport
           type: string
         status:
-          description: 'Enum: [ ENABLED, DISABLED ]'
+          description: "Enum: [ ENABLED, DISABLED ]"
           type: string
       required:
       - destination
@@ -1159,7 +1152,7 @@ components:
             sipteleport:read: allows reading details about provisioned SIPTeleport
             sipteleport:write: allows administration of SIPTeleport
             projects:read: allows reading details about projects
-            globalturn:access: allows administration of GlobalTurn
+            webrtccdn:access: allows administration of WebRTC-CDN
             rtpspeed:read: allows reading details about rtpspeed
             rtpspeed:write: allows administration of rtpspeed
           tokenUrl: https://id.subspace.com/oauth/token

@@ -2,7 +2,7 @@
 
 Subspace Product API
 - API version: 1.0
-  - Build date: 2021-12-16T21:50:26.375Z[GMT]
+  - Build date: 2022-02-04T22:12:05.524Z[GMT]
 
 # Introduction
 
@@ -34,7 +34,7 @@ Subspace uses auth0 for JWT token management.  You can acquire a JWT token by ut
 ## Protecting Your API Tokens
 
   * **JWT tokens have a expiration time of 24 hours.**  Once expired, you will have to use your Subspace private API and public token to request a new one.
-  * The Subspace private token can be rotated from within the Subspace console.  Rotation may take up to 10 minutes for all systems to update state to invalidate the older token and enable the new one.
+  * The Subspace private token can be rotated from within the Subspace console.
   * **Keep your secret token safe.** Your secret token can make any API call on behalf of your account, including changes that may impact billing such as enabling pay-as-you-go charges. Do not store your secret token in your version control system. Do not use your secret token outside your web server, such as a browser, mobile app, or distributed file.
   * **You may use the Subspace console to acquire an API token.**
   * **You may use the Subspace console to disable pay-as-you-go.** This may prevent unexpected charges due to unauthorized or abnormal usage.
@@ -125,7 +125,7 @@ Current Version is **v1:** `https://api.subspace.com/v1`
 
 Building the API client library requires:
 1. Java 1.7+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -161,7 +161,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.openapitools:openapi-java-client:1.0"
+  repositories {
+    mavenCentral()     // Needed if the 'openapi-java-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'openapi-java-client' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "org.openapitools:openapi-java-client:1.0"
+  }
 ```
 
 ### Others
@@ -229,12 +236,12 @@ Class | Method | HTTP request | Description
 *AcceleratorServiceApi* | [**acceleratorServiceGet**](docs/AcceleratorServiceApi.md#acceleratorServiceGet) | **GET** /v1/accelerator/{id} | 
 *AcceleratorServiceApi* | [**acceleratorServiceList**](docs/AcceleratorServiceApi.md#acceleratorServiceList) | **GET** /v1/accelerator | 
 *AcceleratorServiceApi* | [**acceleratorServiceUpdate**](docs/AcceleratorServiceApi.md#acceleratorServiceUpdate) | **PUT** /v1/accelerator/{id} | 
-*GlobalTurnServiceApi* | [**globalTurnServiceGetGlobalTurn**](docs/GlobalTurnServiceApi.md#globalTurnServiceGetGlobalTurn) | **POST** /v1/globalturn | 
 *SipTeleportServiceApi* | [**sipTeleportServiceCreate**](docs/SipTeleportServiceApi.md#sipTeleportServiceCreate) | **POST** /v1/sipteleport | 
 *SipTeleportServiceApi* | [**sipTeleportServiceDelete**](docs/SipTeleportServiceApi.md#sipTeleportServiceDelete) | **DELETE** /v1/sipteleport/{id} | 
 *SipTeleportServiceApi* | [**sipTeleportServiceGet**](docs/SipTeleportServiceApi.md#sipTeleportServiceGet) | **GET** /v1/sipteleport/{id} | 
 *SipTeleportServiceApi* | [**sipTeleportServiceList**](docs/SipTeleportServiceApi.md#sipTeleportServiceList) | **GET** /v1/sipteleport | 
 *SipTeleportServiceApi* | [**sipTeleportServiceUpdate**](docs/SipTeleportServiceApi.md#sipTeleportServiceUpdate) | **PUT** /v1/sipteleport/{id} | 
+*WebRtcCdnServiceApi* | [**webRtcCdnServiceGetWebRtcCdn**](docs/WebRtcCdnServiceApi.md#webRtcCdnServiceGetWebRtcCdn) | **POST** /v1/webrtc-cdn | 
 
 
 ## Documentation for Models
@@ -244,8 +251,6 @@ Class | Method | HTTP request | Description
  - [ProtobufAny](docs/ProtobufAny.md)
  - [V1Accelerator](docs/V1Accelerator.md)
  - [V1CreateSipTeleport](docs/V1CreateSipTeleport.md)
- - [V1GlobalTurnResponse](docs/V1GlobalTurnResponse.md)
- - [V1GlobalTurnServer](docs/V1GlobalTurnServer.md)
  - [V1ListAcceleratorResponse](docs/V1ListAcceleratorResponse.md)
  - [V1ListSipTeleportResponse](docs/V1ListSipTeleportResponse.md)
  - [V1NextPage](docs/V1NextPage.md)
@@ -254,6 +259,8 @@ Class | Method | HTTP request | Description
  - [V1TeleportAddresses](docs/V1TeleportAddresses.md)
  - [V1TransportType](docs/V1TransportType.md)
  - [V1UpdateSipTeleport](docs/V1UpdateSipTeleport.md)
+ - [V1WebRtcCdnResponse](docs/V1WebRtcCdnResponse.md)
+ - [V1WebRtcCdnServer](docs/V1WebRtcCdnServer.md)
 
 
 ## Documentation for Authorization
@@ -271,7 +278,7 @@ Authentication schemes defined for the API:
   - sipteleport:read: allows reading details about provisioned SIPTeleport
   - sipteleport:write: allows administration of SIPTeleport
   - projects:read: allows reading details about projects
-  - globalturn:access: allows administration of GlobalTurn
+  - webrtccdn:access: allows administration of WebRTC-CDN
   - rtpspeed:read: allows reading details about rtpspeed
   - rtpspeed:write: allows administration of rtpspeed
 

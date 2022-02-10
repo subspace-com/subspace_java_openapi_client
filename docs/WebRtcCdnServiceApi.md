@@ -1,15 +1,15 @@
-# GlobalTurnServiceApi
+# WebRtcCdnServiceApi
 
 All URIs are relative to *https://api.subspace.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**globalTurnServiceGetGlobalTurn**](GlobalTurnServiceApi.md#globalTurnServiceGetGlobalTurn) | **POST** /v1/globalturn | 
+[**webRtcCdnServiceGetWebRtcCdn**](WebRtcCdnServiceApi.md#webRtcCdnServiceGetWebRtcCdn) | **POST** /v1/webrtc-cdn | 
 
 
-<a name="globalTurnServiceGetGlobalTurn"></a>
-# **globalTurnServiceGetGlobalTurn**
-> V1GlobalTurnResponse globalTurnServiceGetGlobalTurn()
+<a name="webRtcCdnServiceGetWebRtcCdn"></a>
+# **webRtcCdnServiceGetWebRtcCdn**
+> V1WebRtcCdnResponse webRtcCdnServiceGetWebRtcCdn()
 
 
 
@@ -21,7 +21,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.GlobalTurnServiceApi;
+import org.openapitools.client.api.WebRtcCdnServiceApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -32,12 +32,12 @@ public class Example {
     OAuth accessCode = (OAuth) defaultClient.getAuthentication("accessCode");
     accessCode.setAccessToken("YOUR ACCESS TOKEN");
 
-    GlobalTurnServiceApi apiInstance = new GlobalTurnServiceApi(defaultClient);
+    WebRtcCdnServiceApi apiInstance = new WebRtcCdnServiceApi(defaultClient);
     try {
-      V1GlobalTurnResponse result = apiInstance.globalTurnServiceGetGlobalTurn();
+      V1WebRtcCdnResponse result = apiInstance.webRtcCdnServiceGetWebRtcCdn();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling GlobalTurnServiceApi#globalTurnServiceGetGlobalTurn");
+      System.err.println("Exception when calling WebRtcCdnServiceApi#webRtcCdnServiceGetWebRtcCdn");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -52,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**V1GlobalTurnResponse**](V1GlobalTurnResponse.md)
+[**V1WebRtcCdnResponse**](V1WebRtcCdnResponse.md)
 
 ### Authorization
 
