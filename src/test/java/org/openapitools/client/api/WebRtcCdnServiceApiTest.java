@@ -11,148 +11,39 @@
  */
 
 
-package org.openapitools.client.model;
+package org.openapitools.client.api;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.model.V1WebRtcCdnResponse;
+import org.junit.Test;
+import org.junit.Ignore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * V1CreateSipTeleport
+ * API tests for WebRtcCdnServiceApi
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T22:12:05.524Z[GMT]")
-public class V1CreateSipTeleport {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+@Ignore
+public class WebRtcCdnServiceApiTest {
 
-  public static final String SERIALIZED_NAME_DESTINATION = "destination";
-  @SerializedName(SERIALIZED_NAME_DESTINATION)
-  private String destination;
+    private final WebRtcCdnServiceApi api = new WebRtcCdnServiceApi();
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
-
-  public V1CreateSipTeleport() { 
-  }
-
-  public V1CreateSipTeleport name(String name) {
     
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of SIPTeleport
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of SIPTeleport")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public V1CreateSipTeleport destination(String destination) {
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void webRtcCdnServiceGetWebRtcCdnTest() throws ApiException {
+                V1WebRtcCdnResponse response = api.webRtcCdnServiceGetWebRtcCdn();
+        // TODO: test validations
+    }
     
-    this.destination = destination;
-    return this;
-  }
-
-   /**
-   * Destination of SIPTeleport
-   * @return destination
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Destination of SIPTeleport")
-
-  public String getDestination() {
-    return destination;
-  }
-
-
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public V1CreateSipTeleport status(String status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Enum: [ ENABLED, DISABLED ]
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Enum: [ ENABLED, DISABLED ]")
-
-  public String getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    V1CreateSipTeleport v1CreateSipTeleport = (V1CreateSipTeleport) o;
-    return Objects.equals(this.name, v1CreateSipTeleport.name) &&
-        Objects.equals(this.destination, v1CreateSipTeleport.destination) &&
-        Objects.equals(this.status, v1CreateSipTeleport.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, destination, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class V1CreateSipTeleport {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 }
-

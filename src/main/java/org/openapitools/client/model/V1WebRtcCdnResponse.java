@@ -23,93 +23,77 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.client.model.V1WebRtcCdnServer;
 
 /**
- * V1CreateSipTeleport
+ * V1WebRtcCdnResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T22:12:05.524Z[GMT]")
-public class V1CreateSipTeleport {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class V1WebRtcCdnResponse {
+  public static final String SERIALIZED_NAME_ICE_SERVERS = "iceServers";
+  @SerializedName(SERIALIZED_NAME_ICE_SERVERS)
+  private List<V1WebRtcCdnServer> iceServers = null;
 
-  public static final String SERIALIZED_NAME_DESTINATION = "destination";
-  @SerializedName(SERIALIZED_NAME_DESTINATION)
-  private String destination;
+  public static final String SERIALIZED_NAME_TTL = "ttl";
+  @SerializedName(SERIALIZED_NAME_TTL)
+  private Long ttl;
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
-
-  public V1CreateSipTeleport() { 
+  public V1WebRtcCdnResponse() { 
   }
 
-  public V1CreateSipTeleport name(String name) {
+  public V1WebRtcCdnResponse iceServers(List<V1WebRtcCdnServer> iceServers) {
     
-    this.name = name;
+    this.iceServers = iceServers;
+    return this;
+  }
+
+  public V1WebRtcCdnResponse addIceServersItem(V1WebRtcCdnServer iceServersItem) {
+    if (this.iceServers == null) {
+      this.iceServers = new ArrayList<V1WebRtcCdnServer>();
+    }
+    this.iceServers.add(iceServersItem);
     return this;
   }
 
    /**
-   * Name of SIPTeleport
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of SIPTeleport")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public V1CreateSipTeleport destination(String destination) {
-    
-    this.destination = destination;
-    return this;
-  }
-
-   /**
-   * Destination of SIPTeleport
-   * @return destination
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Destination of SIPTeleport")
-
-  public String getDestination() {
-    return destination;
-  }
-
-
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public V1CreateSipTeleport status(String status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Enum: [ ENABLED, DISABLED ]
-   * @return status
+   * Get iceServers
+   * @return iceServers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Enum: [ ENABLED, DISABLED ]")
+  @ApiModelProperty(value = "")
 
-  public String getStatus() {
-    return status;
+  public List<V1WebRtcCdnServer> getIceServers() {
+    return iceServers;
   }
 
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setIceServers(List<V1WebRtcCdnServer> iceServers) {
+    this.iceServers = iceServers;
+  }
+
+
+  public V1WebRtcCdnResponse ttl(Long ttl) {
+    
+    this.ttl = ttl;
+    return this;
+  }
+
+   /**
+   * Get ttl
+   * @return ttl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getTtl() {
+    return ttl;
+  }
+
+
+  public void setTtl(Long ttl) {
+    this.ttl = ttl;
   }
 
 
@@ -121,24 +105,22 @@ public class V1CreateSipTeleport {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    V1CreateSipTeleport v1CreateSipTeleport = (V1CreateSipTeleport) o;
-    return Objects.equals(this.name, v1CreateSipTeleport.name) &&
-        Objects.equals(this.destination, v1CreateSipTeleport.destination) &&
-        Objects.equals(this.status, v1CreateSipTeleport.status);
+    V1WebRtcCdnResponse v1WebRtcCdnResponse = (V1WebRtcCdnResponse) o;
+    return Objects.equals(this.iceServers, v1WebRtcCdnResponse.iceServers) &&
+        Objects.equals(this.ttl, v1WebRtcCdnResponse.ttl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, destination, status);
+    return Objects.hash(iceServers, ttl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class V1CreateSipTeleport {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("class V1WebRtcCdnResponse {\n");
+    sb.append("    iceServers: ").append(toIndentedString(iceServers)).append("\n");
+    sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

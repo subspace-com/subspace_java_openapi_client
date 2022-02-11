@@ -25,91 +25,91 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * V1CreateSipTeleport
+ * V1WebRtcCdnServer
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-04T22:12:05.524Z[GMT]")
-public class V1CreateSipTeleport {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class V1WebRtcCdnServer {
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
 
-  public static final String SERIALIZED_NAME_DESTINATION = "destination";
-  @SerializedName(SERIALIZED_NAME_DESTINATION)
-  private String destination;
+  public static final String SERIALIZED_NAME_CREDENTIAL = "credential";
+  @SerializedName(SERIALIZED_NAME_CREDENTIAL)
+  private String credential;
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  public static final String SERIALIZED_NAME_URLS = "urls";
+  @SerializedName(SERIALIZED_NAME_URLS)
+  private String urls;
 
-  public V1CreateSipTeleport() { 
+  public V1WebRtcCdnServer() { 
   }
 
-  public V1CreateSipTeleport name(String name) {
+  public V1WebRtcCdnServer username(String username) {
     
-    this.name = name;
+    this.username = username;
     return this;
   }
 
    /**
-   * Name of SIPTeleport
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of SIPTeleport")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public V1CreateSipTeleport destination(String destination) {
-    
-    this.destination = destination;
-    return this;
-  }
-
-   /**
-   * Destination of SIPTeleport
-   * @return destination
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Destination of SIPTeleport")
-
-  public String getDestination() {
-    return destination;
-  }
-
-
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public V1CreateSipTeleport status(String status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Enum: [ ENABLED, DISABLED ]
-   * @return status
+   * Get username
+   * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Enum: [ ENABLED, DISABLED ]")
+  @ApiModelProperty(value = "")
 
-  public String getStatus() {
-    return status;
+  public String getUsername() {
+    return username;
   }
 
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+
+  public V1WebRtcCdnServer credential(String credential) {
+    
+    this.credential = credential;
+    return this;
+  }
+
+   /**
+   * Get credential
+   * @return credential
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCredential() {
+    return credential;
+  }
+
+
+  public void setCredential(String credential) {
+    this.credential = credential;
+  }
+
+
+  public V1WebRtcCdnServer urls(String urls) {
+    
+    this.urls = urls;
+    return this;
+  }
+
+   /**
+   * Get urls
+   * @return urls
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getUrls() {
+    return urls;
+  }
+
+
+  public void setUrls(String urls) {
+    this.urls = urls;
   }
 
 
@@ -121,24 +121,24 @@ public class V1CreateSipTeleport {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    V1CreateSipTeleport v1CreateSipTeleport = (V1CreateSipTeleport) o;
-    return Objects.equals(this.name, v1CreateSipTeleport.name) &&
-        Objects.equals(this.destination, v1CreateSipTeleport.destination) &&
-        Objects.equals(this.status, v1CreateSipTeleport.status);
+    V1WebRtcCdnServer v1WebRtcCdnServer = (V1WebRtcCdnServer) o;
+    return Objects.equals(this.username, v1WebRtcCdnServer.username) &&
+        Objects.equals(this.credential, v1WebRtcCdnServer.credential) &&
+        Objects.equals(this.urls, v1WebRtcCdnServer.urls);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, destination, status);
+    return Objects.hash(username, credential, urls);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class V1CreateSipTeleport {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("class V1WebRtcCdnServer {\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
+    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
     sb.append("}");
     return sb.toString();
   }
