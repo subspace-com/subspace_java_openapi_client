@@ -106,7 +106,6 @@ public class WebRtcCdnServiceApi {
         }
 
         Object localVarPostBody = null;
-//        String localVarPostBody = "";
 
         // create path and map variables
         String localVarPath = "/v1/webrtc-cdn";
@@ -119,7 +118,6 @@ public class WebRtcCdnServiceApi {
 
         final String[] localVarAccepts = {
             "application/json"
-//            "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -127,7 +125,7 @@ public class WebRtcCdnServiceApi {
         }
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -135,9 +133,7 @@ public class WebRtcCdnServiceApi {
         }
 
         String[] localVarAuthNames = new String[] { "accessCode" };
-	System.out.println("basepath: " + basePath + ", localVarPath: " + localVarPath + " localVarQueryParams: " + localVarQueryParams + ", localVarCollectionQueryParams: " + localVarCollectionQueryParams + ", localVarPostBody: " + localVarPostBody + ", localVarHeaderParams: " + localVarHeaderParams + ", localVarCookieParams: " + localVarCookieParams + ", localVarFormParams: " + localVarFormParams + ", localVarAuthNames: " + localVarAuthNames );
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-//        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
